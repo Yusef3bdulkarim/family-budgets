@@ -1,0 +1,301 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Family Manager - Request History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface-container-lowest": "#ffffff",
+                  "outline": "#75777f",
+                  "on-primary-fixed-variant": "#364768",
+                  "primary-container": "#1a2b4b",
+                  "error": "#ba1a1a",
+                  "tertiary-fixed": "#f8d8ff",
+                  "surface": "#f8f9fa",
+                  "surface-tint": "#4e5e81",
+                  "on-error-container": "#93000a",
+                  "surface-bright": "#f8f9fa",
+                  "secondary-fixed": "#a3f69c",
+                  "on-tertiary-fixed": "#320047",
+                  "on-primary-container": "#8293b8",
+                  "surface-container-high": "#e7e8e9",
+                  "outline-variant": "#c5c6cf",
+                  "on-secondary": "#ffffff",
+                  "primary-fixed": "#d8e2ff",
+                  "on-primary-fixed": "#081b3a",
+                  "tertiary-container": "#4a0067",
+                  "on-surface-variant": "#44474e",
+                  "on-surface": "#191c1d",
+                  "on-tertiary-fixed-variant": "#721199",
+                  "on-secondary-container": "#217128",
+                  "secondary-fixed-dim": "#88d982",
+                  "on-primary": "#ffffff",
+                  "surface-variant": "#e1e3e4",
+                  "secondary": "#1b6d24",
+                  "on-tertiary": "#ffffff",
+                  "inverse-on-surface": "#f0f1f2",
+                  "surface-dim": "#d9dadb",
+                  "primary": "#031635",
+                  "tertiary": "#2b003d",
+                  "background": "#f8f9fa",
+                  "error-container": "#ffdad6",
+                  "surface-container-low": "#f3f4f5",
+                  "on-secondary-fixed": "#002204",
+                  "tertiary-fixed-dim": "#ebb2ff",
+                  "on-secondary-fixed-variant": "#005312",
+                  "primary-fixed-dim": "#b6c6ef",
+                  "on-tertiary-container": "#c66ced",
+                  "on-background": "#191c1d",
+                  "inverse-surface": "#2e3132",
+                  "surface-container-highest": "#e1e3e4",
+                  "on-error": "#ffffff",
+                  "inverse-primary": "#b6c6ef",
+                  "secondary-container": "#a0f399",
+                  "surface-container": "#edeeef"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "stack-sm": "8px",
+                  "stack-md": "16px",
+                  "section-padding": "32px",
+                  "container-margin": "20px",
+                  "stack-lg": "24px",
+                  "gutter": "16px"
+          },
+          "fontFamily": {
+                  "display-lg-mobile": ["Inter"],
+                  "label-md": ["Inter"],
+                  "headline-md": ["Inter"],
+                  "display-lg": ["Inter"],
+                  "label-lg": ["Inter"],
+                  "headline-lg": ["Inter"],
+                  "body-md": ["Inter"],
+                  "body-lg": ["Inter"]
+          },
+          "fontSize": {
+                  "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                  "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                  "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                  "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                  "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbars for a cleaner mobile look */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Safe Layering Elevation */
+    .card-shadow {
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+    }
+    /* Active Tab Indicator Animation */
+    .tab-underline {
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background w-full top-0 sticky z-40 shadow-[0_4px_20px_0_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-center px-container-margin py-stack-md w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 transition-transform" data-icon="menu">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Requests</h1>
+</div>
+<div class="flex items-center">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 transition-transform" data-icon="notifications">notifications</button>
+</div>
+</div>
+<!-- Tab Switcher -->
+<div class="flex px-container-margin border-b border-outline-variant/30">
+<button class="flex-1 py-3 text-on-surface-variant font-label-lg text-label-lg transition-colors relative group">
+        Pending
+        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-transparent group-hover:bg-outline-variant/50"></div>
+</button>
+<button class="flex-1 py-3 text-primary font-bold font-label-lg text-label-lg relative">
+        History
+        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-t-full"></div>
+</button>
+</div>
+</header>
+<main class="px-container-margin mt-stack-lg space-y-stack-lg">
+<!-- Filter Chips Row -->
+<section class="flex gap-stack-sm overflow-x-auto no-scrollbar py-2">
+<button class="flex items-center gap-1.5 px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-label-md font-label-md active:scale-95 transition-transform">
+<span>All Members</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-label-md font-label-md active:scale-95 transition-transform">
+<span>Categories</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-label-md font-label-md active:scale-95 transition-transform">
+<span>Last 30 Days</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+</section>
+<!-- History List -->
+<section class="space-y-stack-md">
+<!-- Card 1: Sarah Approved -->
+<div class="bg-surface-container-lowest rounded-[24px] p-5 card-shadow flex flex-col gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center overflow-hidden">
+<img alt="Sarah" class="w-full h-full object-cover" data-alt="A professional studio portrait of a young woman with a friendly smile, set against a soft, clean, warm-toned minimalist background. She has natural hair and subtle makeup, embodying a modern, trustworthy, and approachable family member character. The lighting is bright and high-end, matching a premium digital banking aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm6qPmIKqb3-TUMM_7U7E3tjzBxeL7uT522ZnvIpRvSy5MUR_2eUSEDkjyxLN7OtbD2VhL6p2vHoNssyOoVnjRj_pcPZEf55aZdumcZSxnDHv9UN9Ey-Upv1cOzl_9FsScmRR69HnQ_U43KgwaCtgyyrIrPlLysLJTP3j_YK7lwkJmMXeVyy50y5aS7JvX9ptlNLcjOSBKTcfKY5tFC9jvBMAElc_RH1DCnQRhU5Va6bnRU-x6W9hS2OQ4JiX9JdpCex439thmROs">
+</div>
+<div>
+<p class="font-headline-md-mobile text-headline-md-mobile text-primary">Sarah</p>
+<p class="text-on-surface-variant font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="shopping_basket">shopping_basket</span>
+                Groceries
+              </p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md-mobile text-headline-md-mobile text-primary">$120.00</p>
+<p class="text-outline font-label-md text-label-md">2 days ago</p>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant/20">
+<span class="flex items-center gap-1.5 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-label-md font-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            Approved
+          </span>
+<button class="text-primary font-label-lg text-label-lg flex items-center gap-1">
+            Details
+            <span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Omar Rejected -->
+<div class="bg-surface-container-lowest rounded-[24px] p-5 card-shadow flex flex-col gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center overflow-hidden">
+<img alt="Omar" class="w-full h-full object-cover" data-alt="A portrait of a young man with a kind expression and neat grooming, captured in soft natural light against a neutral architectural background. The image has a warm, high-quality, and organized feel, consistent with a clean minimalist design system. The composition is centered and modern, representing a responsible family user profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB237S8ewCl-oIW6sRGoXJmd1mUg_6wAQef-Hgw2OktaeV9NSmIAlEborRs2ueI9lh1vpw_j2o5znmOvOrS5VBY1P_TVLZ7FoKuSnC27prJDg2gDpCVLYpzWQAnajTUEzt1nDBFojEW-v8PrS9yTLLGOuOw_DMhpa_LPdAHlS8bvnXBJopTv-Hnhggi-iBTvpRSflZf_F0ShvbOpv0U9i3JWaol_jUe8VoZZ5FiY8KJPXYySBrLftGiyuuNuXoVQcIZZ7WKxvqPfY4">
+</div>
+<div>
+<p class="font-headline-md-mobile text-headline-md-mobile text-primary">Omar</p>
+<p class="text-on-surface-variant font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="toys">toys</span>
+                Toys
+              </p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md-mobile text-headline-md-mobile text-primary">$45.00</p>
+<p class="text-outline font-label-md text-label-md">3 days ago</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="flex items-center gap-1.5 px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-md font-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="cancel" style="font-variation-settings: 'FILL' 1;">cancel</span>
+              Rejected
+            </span>
+<button class="text-primary font-label-lg text-label-lg flex items-center gap-1">
+              Details
+              <span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<p class="text-error text-label-md font-label-md italic">Reason: Budget reached for the month.</p>
+</div>
+</div>
+<!-- Additional Visual: History Summary -->
+<div class="bg-primary p-6 rounded-[24px] text-on-primary flex justify-between items-center mt-section-padding">
+<div>
+<p class="text-on-primary-container font-label-lg text-label-lg opacity-80">Monthly Spent</p>
+<p class="font-display-lg-mobile text-display-lg-mobile text-white">$2,450.80</p>
+</div>
+<div class="bg-white/10 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-[32px] text-white" data-icon="bar_chart">bar_chart</span>
+</div>
+</div>
+</section>
+<!-- Empty Spacer for Bottom Nav -->
+<div class="h-10"></div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 pb-safe bg-surface-container-lowest dark:bg-surface-dim shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] rounded-t-xl z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+<span class="font-label-md text-label-md">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-md text-label-md">More</span>
+</a>
+</nav>
+<script>
+    // Simple micro-interaction for filter buttons
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('touchstart', function() {
+        this.classList.add('scale-95');
+      });
+      btn.addEventListener('touchend', function() {
+        this.classList.remove('scale-95');
+      });
+    });
+
+    // Intersection observer for card entry animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-4');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-shadow').forEach(card => {
+      card.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-500');
+      observer.observe(card);
+    });
+  </script>
+</body></html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Family Management - Our Family Wealth</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9fa",
+                        "outline-variant": "#c5c6cf",
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "on-primary-fixed-variant": "#364768",
+                        "tertiary": "#2b003d",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#721199",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed": "#002204",
+                        "tertiary-container": "#4a0067",
+                        "secondary-fixed-dim": "#88d982",
+                        "secondary": "#1b6d24",
+                        "background": "#f8f9fa",
+                        "on-background": "#191c1d",
+                        "on-tertiary-container": "#c66ced",
+                        "tertiary-fixed": "#f8d8ff",
+                        "primary-container": "#1a2b4b",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#217128",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed": "#081b3a",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed": "#320047",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#a3f69c",
+                        "surface-container-high": "#e7e8e9",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#44474e",
+                        "outline": "#75777f",
+                        "surface-variant": "#e1e3e4",
+                        "surface-tint": "#4e5e81",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary-container": "#8293b8",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b6c6ef",
+                        "surface-dim": "#d9dadb",
+                        "primary": "#031635",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-fixed-variant": "#005312",
+                        "primary-fixed": "#d8e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "20px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "section-padding": "32px",
+                        "gutter": "16px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+        }
+        .progress-glow {
+            box-shadow: 0 0 12px rgba(27, 109, 36, 0.2);
+        }
+        .safe-bottom {
+            padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top AppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface flex justify-between items-center px-container-margin py-stack-md max-w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="Ahmed" class="w-full h-full object-cover" data-alt="A professional and warm portrait of a smiling middle-aged man with graying hair, wearing a high-quality navy blue linen shirt. The background is a soft-focus modern home interior with warm natural lighting coming from a large window. The photography style is premium, clean, and welcoming, reflecting a sense of financial stability and family leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuVryi0iSZoZWL-HHDEzdrtEuLHDgGu0pSgBy73gGfLMZ7w9Kr5o3ZZ5RdGgpxOptGdv5wI-vqLvrS8pTqH1gOPJUXZOAg_VSXnh8UzNSS4TT8u65ehYTAvF8kEMTFmRSykWYzQKMhN-_gRPBZ9Zq1RDVURhEPxOMQ9jbP73Yyjj05USuEQj2iw6tM2nDn7e2_-Op3QmGGMv8iNJKhwtXzI8SPAoIpX6EVgCrptKAalV2ze-H71p2b4z7zZ7sO6sfhXVJ0U10rBOs"/>
+</div>
+<div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary">Family</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Ahmed Family</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+</header>
+<main class="px-container-margin pb-32">
+<!-- Action Buttons -->
+<div class="flex gap-stack-sm py-stack-md overflow-x-auto no-scrollbar">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2.5 rounded-full font-label-lg transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                Add Member
+            </button>
+<button class="flex items-center gap-2 bg-surface-container-lowest text-primary border border-outline-variant px-4 py-2.5 rounded-full font-label-lg transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                Manage Permissions
+            </button>
+</div>
+<!-- Members Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-gutter mt-stack-md">
+<!-- Ahmed (Manager) -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl soft-shadow border border-white relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-primary-fixed/30">
+<img alt="Ahmed" class="w-full h-full object-cover" data-alt="A high-quality 3D rendered character illustration of a confident, friendly adult male figure. The style is modern, stylized with smooth textures, wearing a business-casual navy sweater. The character is set against a clean, soft-colored studio background with professional three-point lighting, conveying trust and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7cKuOdhDuUpi8xNyCetjiaYPuCAN3h9qnfk5ZG1vqb08zov3KvaIE8p5pF6dDWojsiVjoqI4xeiKQsqAW92dBUnlOgxBU5-LYXoQDQpbeN9pZznIA95wieM1JZPobxcMXUmbNG9AIIwTDky7Cl4JgC-Fl9lgLxgCwQtxocqR9wKPb4Z2nORgUCq4AA9XWL0k8TL6E8gwj5eBCHs-F861uIKa5APUUIZbeRvD7QX0dryjIq3Fg_aa31A64C3Bvgi2O1HHk1iBrKC4"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-on-surface">Ahmed</h3>
+<span class="bg-primary-container text-on-primary-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Manager</span>
+</div>
+<p class="font-label-md text-secondary font-semibold mt-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Active
+                            </p>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-lg">
+<p class="font-label-md">2,500 pts</p>
+</div>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-end">
+<p class="font-label-md text-on-surface-variant">Monthly Budget</p>
+<p class="font-label-lg text-on-surface">75% Used</p>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-glow rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+<!-- Sarah (Co-Manager) -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl soft-shadow border border-white relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-secondary-fixed/30">
+<img alt="Sarah" class="w-full h-full object-cover" data-alt="A sophisticated 3D character illustration of an professional woman with a warm smile. She has dark hair tied back and is wearing a chic emerald green blouse. The lighting is soft and cinematic, with a gentle bokeh background. The aesthetic is clean, modern, and high-end, representing a family co-manager role." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOXITnwdnmXFoMcshlzBZCOfujHxqIHa9qAiMdtBSvTs-UatHJKqnxWnVo4d86Wqrso0hiBCknRrh5LQgx2EDXnaI_dptmLD3ls8wirELY8-rAKFgfVdy9oQnemeLDB1f0SbPZwpPZJxwOc9TlKizUdjx3345ItAMht26IFqO_-uXxLAjfMrf-3yibfPtYGAdgf5fzb89qErll-4bTqEiVlBlHWqM8IGR1lBTMe8PPgrhDO-a9mj3MIUVtcJgpfqVq0ZcgpCMfMHw"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-on-surface">Sarah</h3>
+<span class="bg-secondary-container text-on-secondary-fixed-variant text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Co-Manager</span>
+</div>
+<p class="font-label-md text-secondary font-semibold mt-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Active
+                            </p>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-lg">
+<p class="font-label-md">3,200 pts</p>
+</div>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-end">
+<p class="font-label-md text-on-surface-variant">Monthly Budget</p>
+<p class="font-label-lg text-on-surface">40% Used</p>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-glow rounded-full" style="width: 40%"></div>
+</div>
+</div>
+</div>
+<!-- Omar (Member) -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl soft-shadow border border-white relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-tertiary-fixed/30">
+<img alt="Omar" class="w-full h-full object-cover" data-alt="A friendly 3D character of a young teenage boy with curly hair, wearing a stylish lavender hoodie. The visual style is premium digital art, with vibrant textures and cheerful, soft lighting. He is set against a minimalist light grey background, looking optimistic and energetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP1dEtFal6RTl4ssEBYSYYRyKQ5qxhMhI0cNsH5PVvT7RHH5m9dS2XQzrIr_rHUwYfxfLuVkvE0q_bA3zVHYxlcq8v_gG-Tdn0x73BEl5FyUz2qjVcFutzEfG3VuXwLoENebCD9_aksJrxyw_XRVk8BgV4jSWa_i8uu6Y2u2yx-YUvox8Y_xnCo043T_NdKRq2-EsnUdnxpLF6eXpoNORjx24U1n2DbbWRdVCAIQ08jUvAUWyAsm3S7mVsWjvX9rRB-Efw7MfXku4"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-on-surface">Omar</h3>
+</div>
+<p class="font-label-md text-secondary font-semibold mt-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Active
+                            </p>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-lg">
+<p class="font-label-md">850 pts</p>
+</div>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-end">
+<p class="font-label-md text-on-surface-variant">Monthly Budget</p>
+<p class="font-label-lg text-error">90% Used</p>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full shadow-[0_0_8px_rgba(186,26,26,0.3)]" style="width: 90%"></div>
+</div>
+</div>
+</div>
+<!-- Jana (Member) -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl soft-shadow border border-white relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-secondary-fixed/30">
+<img alt="Jana" class="w-full h-full object-cover" data-alt="A charming 3D stylized character of a young girl with bright, curious eyes and a warm smile. She is wearing a soft pink knitted sweater. The 3D render is clean and high-fidelity, with soft global illumination and a playful, warm atmosphere against a pastel background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8vk10mRazkTxNlgbhTR-mGkBwmYPTMQslu_G8DKGDwgupcZs0SxARWZ2U25XixJxo3Ijbom-7ZnogkNSiq50RI-vMKk4zaseQ9wYs99UBD0Zivc0Hjsg3gIdoYXqW43-aAHNm9qXigAeiXrNIryKOlZoHO_gumYt8rKPviTt43hpRNAispP5nGRxu9tuGaN2PAu4WZAVJJmosarDsk1HAnL_jkVQovWsRhXYu56fSGQ6bGLX8YvuZy6vakAc-W3DX9iD_lgmrJKI"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-on-surface">Jana</h3>
+</div>
+<p class="font-label-md text-secondary font-semibold mt-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Active
+                            </p>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-lg">
+<p class="font-label-md">1,500 pts</p>
+</div>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-end">
+<p class="font-label-md text-on-surface-variant">Monthly Budget</p>
+<p class="font-label-lg text-on-surface">20% Used</p>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-glow rounded-full" style="width: 20%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Family Overview Section (Bonus) -->
+<div class="mt-stack-lg">
+<h2 class="font-headline-lg text-primary mb-stack-md">Family Health</h2>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-primary-container p-5 rounded-2xl text-on-primary-container">
+<span class="material-symbols-outlined mb-2">savings</span>
+<p class="font-label-md opacity-80">Total Savings</p>
+<p class="font-headline-lg">$42,500.00</p>
+</div>
+<div class="bg-tertiary-container p-5 rounded-2xl text-on-tertiary-container">
+<span class="material-symbols-outlined mb-2">stars</span>
+<p class="font-label-md opacity-80">Shared Points</p>
+<p class="font-headline-lg">8,050</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pt-2 pb-safe bg-surface-container-lowest shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-150 active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all duration-150 active:scale-90">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md mt-1">Family</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-150 active:scale-90">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md text-label-md mt-1">Savings</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-150 active:scale-90">
+<span class="material-symbols-outlined">lock</span>
+<span class="font-label-md text-label-md mt-1">Vault</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions for cards
+        document.querySelectorAll('.soft-shadow').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

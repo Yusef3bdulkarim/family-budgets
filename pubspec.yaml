@@ -1,0 +1,43 @@
+name: family_budgets
+description: "Family Budget — Family Financial Management Application"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+
+  # Auth Providers
+  google_sign_in: ^6.2.2
+  sign_in_with_apple: ^6.1.4
+
+  # State Management
+  flutter_bloc: ^9.1.0
+
+  # Dependency Injection
+  get_it: ^8.0.3
+
+  # Routing
+  go_router: ^14.8.1
+
+  # Fonts
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,242 @@
+<!DOCTYPE html><html class="light" dir="ltr" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Family Budget - Role Selection</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#721199",
+                        "secondary-fixed": "#a3f69c",
+                        "outline": "#75777f",
+                        "primary-container": "#1a2b4b",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-fixed-dim": "#88d982",
+                        "on-secondary-container": "#217128",
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4e5e81",
+                        "surface-dim": "#d9dadb",
+                        "primary": "#031635",
+                        "on-tertiary-fixed": "#320047",
+                        "secondary": "#1b6d24",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-primary": "#b6c6ef",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary-fixed": "#081b3a",
+                        "tertiary-container": "#4a0067",
+                        "on-background": "#191c1d",
+                        "tertiary": "#2b003d",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-container": "#a0f399",
+                        "inverse-surface": "#2e3132",
+                        "outline-variant": "#c5c6cf",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#edeeef",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed": "#002204",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#44474e",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-fixed-variant": "#364768",
+                        "background": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#005312",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "on-tertiary-container": "#c66ced",
+                        "on-primary-container": "#8293b8",
+                        "tertiary-fixed": "#f8d8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-margin": "20px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "section-padding": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .role-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-width: 2px;
+            border-color: transparent;
+        }
+        .role-card.selected {
+            border-color: #031635; /* Primary color */
+            background-color: #ffffff;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px -5px rgba(3, 22, 53, 0.1);
+        }
+        .role-card.selected .check-indicator {
+            opacity: 1;
+        }
+        /* Custom shadows based on Style Guidance */
+        .shadow-soft {
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-fixed">
+<!-- Top Navigation Bar (Shared Component Logic) -->
+<header class="w-full top-0 sticky bg-background flex items-center justify-center px-container-margin py-stack-md z-40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight">Family Budget</h1>
+</div>
+</header>
+<main class="max-w-md mx-auto px-container-margin pb-32">
+<!-- Section Header -->
+<div class="text-center mt-stack-lg mb-section-padding">
+<h2 class="font-headline-lg text-headline-lg text-primary">Choose your role in the family</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-stack-sm">Select the profile that best fits your daily responsibilities.</p>
+</div>
+<!-- Role Cards List -->
+<div class="space-y-stack-md" id="roleContainer">
+<!-- Card 1: Family Manager -->
+<button class="role-card group relative w-full text-left bg-surface-container-lowest rounded-xl p-stack-md flex gap-gutter shadow-soft hover:opacity-90" onclick="selectRole(this)">
+<div class="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-surface-container">
+<img alt="Family Manager Role Description" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmW2kHfFdJqZ9l2_9jHs2hWA_K0ZMdkad_UF7flOc6vY0k-yUjTn83MqoZ_XsuiOuSU1u2Am7TX5wtTYr-tFnL4NLD37e383Vq6Kq7fb9SKnjrtrBnmupaPvlCb8wt2lgdNrFWydkOyDXnKoPa0o4nGqD2S8rzsfsAoQ0G52dkUg9AUnSs1HNHvHufeiLedwiSRRD-aYzlTZubSypTYfGkTUb2rceNM8DmvIH8OiqEcC7MubJH_VLL9QRPj1I1XSFDpMSGWXnLrMo">
+</div>
+<div class="flex-grow pr-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Family Manager</h3>
+<div class="check-indicator opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-tight mt-1">
+                        Responsible for managing the family budget, approving requests, and tracking financial progress.
+                    </p>
+</div>
+</button>
+<!-- Card 2: Co-Manager -->
+<button class="role-card group relative w-full text-left bg-surface-container-lowest rounded-xl p-stack-md flex gap-gutter shadow-soft hover:opacity-90" onclick="selectRole(this)">
+<div class="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-surface-container">
+<img alt="Co-Manager Role Description" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqzWEGwwzwOAf5D-cWxotHILPjmK8iUqHk4BwpcNHCZ3nnKApdbo-WS3M7cQHOh0uXPbFXYZtJ7UTogGAy18mapydPdF4KGpipRiZksoJWXM-xE3dWqMqIQahXmITokuNnOxOsXlV5Vl87G9wZXRyv7Hbt0J-L_Z-nPsyu5YeanJkJys1uHqTudSPBjWpuJ9J-0GCTVBZiPYItOUZbt1LsRB-a2Nw_Nq7FyEN4FzbPe8CzURMsgCvWcsbeAuzlWwV5KopX4lVNhOc">
+</div>
+<div class="flex-grow pr-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Co-Manager</h3>
+<div class="check-indicator opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-tight mt-1">
+                        Can help manage family activities based on permissions.
+                    </p>
+</div>
+</button>
+<!-- Card 3: Family Member -->
+<button class="role-card group relative w-full text-left bg-surface-container-lowest rounded-xl p-stack-md flex gap-gutter shadow-soft hover:opacity-90" onclick="selectRole(this)">
+<div class="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-surface-container">
+<img alt="Family Member Role Description" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwz9znyq_ioqTKAvpcI9dTl60Vi2xmR4R4PFkShoGgZe8FMAsTbJLdQk0Z_UtD6kpyXd4cMKgeAwe_tFEIx_UyJ22kyP02LXK5nCgY2uBfmruEQtssgUqE3a2ktg4GN8bct2adFvCr8NxYWwI-VME6fzc3zlNIeGkolq12v1JmQaRoVSFyLBZvVEUdy5BBtEKDLgLOdv1YfsaTcrtw4RtIIN9UbCLLp9aJS927PqA3u6jn5sNkf3wxIKeqgvQ3qT7sy1fC2SiOBAs">
+</div>
+<div class="flex-grow pr-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary">Family Member</h3>
+<div class="check-indicator opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-tight mt-1">
+                        Can manage personal requests, follow budget, and build financial habits.
+                    </p>
+</div>
+</button>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest safe-bottom shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] z-50 rounded-t-xl">
+<div class="px-container-margin py-stack-lg">
+<button class="w-full py-4 rounded-full font-label-lg text-label-lg transition-all duration-300 opacity-50 cursor-not-allowed bg-surface-container-high text-on-surface-variant flex items-center justify-center gap-2" disabled="" id="continueBtn">
+                Continue
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation (Shared Component Placeholder - Suppressed per Relevance Check for Transactional Onboarding) -->
+<script>
+        function selectRole(element) {
+            // Remove selection from all cards
+            document.querySelectorAll('.role-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            element.classList.add('selected');
+            
+            // Enable the continue button
+            const continueBtn = document.getElementById('continueBtn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-surface-container-high', 'text-on-surface-variant');
+            continueBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-lg', 'active:scale-95');
+            
+            // Subtle haptic feedback simulation
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        // Add a bit of visual flair on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm', 'bg-opacity-95', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('shadow-sm', 'bg-opacity-95', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Budget Management - Family Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-bright": "#f8f9fa",
+                        "background": "#f8f9fa",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "on-tertiary-container": "#c66ced",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-fixed": "#320047",
+                        "surface-container-low": "#f3f4f5",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#88d982",
+                        "primary": "#031635",
+                        "secondary": "#1b6d24",
+                        "on-surface-variant": "#44474e",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#191c1d",
+                        "inverse-primary": "#b6c6ef",
+                        "tertiary-fixed": "#f8d8ff",
+                        "tertiary-container": "#4a0067",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#1a2b4b",
+                        "outline-variant": "#c5c6cf",
+                        "on-primary-container": "#8293b8",
+                        "secondary-container": "#a0f399",
+                        "tertiary": "#2b003d",
+                        "on-secondary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#002204",
+                        "error-container": "#ffdad6",
+                        "on-background": "#191c1d",
+                        "outline": "#75777f",
+                        "surface": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed": "#081b3a",
+                        "surface-variant": "#e1e3e4",
+                        "surface-tint": "#4e5e81",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#721199",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#a3f69c",
+                        "on-secondary-container": "#217128",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "24px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "section-padding": "32px",
+                        "container-margin": "20px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .card-shadow { shadow: 0 4px 20px 0 rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-50 bg-background flex items-center justify-between px-container-margin py-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a middle-aged man with a warm, friendly expression, representing a family manager. He is in a brightly lit home office with soft, natural lighting. The style is modern and professional, with a clean and organized atmosphere that evokes a sense of leadership and financial stability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAaVDWiPHzomTl3LVkK_sVyZhlpeJ_H8hLyAbgyQV86A1JY-Xoko-yHNWZzsASzMHu4shAkClPPSkN4ikaV32UbW9TjlRAEIKuUBtPUHYCPsMfO1gBGcV-U_Cytb0HMqtcfWsSjH3QIYoxFn9LXyEEJTEYTp84gOfG6R573mYDv6ekEMPD4TaVjq7HTYrkBJkYKJx5GuwJ8nNpt-8dk9lIcdW7Ggdkc9QX5U6K0Uw-CxyXjyiFPkaewaGT1P4o39wsdx0lkfGdtdI"/>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Budget</h1>
+<p class="text-label-md text-on-surface-variant">Current Month</p>
+</div>
+</div>
+<button class="flex items-center gap-1 bg-surface-container-low px-3 py-2 rounded-full transition-all active:scale-95">
+<span class="font-label-lg text-primary">March 2024</span>
+<span class="material-symbols-outlined text-[20px] text-primary">expand_more</span>
+</button>
+</header>
+<main class="px-container-margin space-y-stack-lg">
+<!-- Summary Card -->
+<section class="bg-surface-container-lowest rounded-card p-container-margin shadow-[0_4px_20px_0_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Family Budget</p>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary">$5,000.00</h2>
+</div>
+<div class="bg-secondary-container px-3 py-1 rounded-full">
+<span class="text-label-md font-bold text-on-secondary-container">25% Left</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-3 rounded-full overflow-hidden mb-stack-md">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000 ease-out" style="width: 75%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div>
+<p class="text-label-md text-on-surface-variant">Used</p>
+<p class="font-headline-md text-on-surface">$3,750.00</p>
+</div>
+</div>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-4">
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+<div>
+<p class="text-label-md text-on-surface-variant">Remaining</p>
+<p class="font-headline-md text-on-surface">$1,250.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights -->
+<section class="space-y-stack-sm">
+<h3 class="font-label-lg text-on-surface-variant uppercase ml-1">Insights</h3>
+<div class="flex overflow-x-auto hide-scrollbar gap-stack-md -mx-container-margin px-container-margin pb-2">
+<!-- Insight 1 -->
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest p-4 rounded-xl shadow-[0_2px_10px_0_rgba(0,0,0,0.02)] flex items-start gap-3 border border-outline-variant">
+<div class="p-2 bg-error-container rounded-lg">
+<span class="material-symbols-outlined text-on-error-container">warning</span>
+</div>
+<div>
+<p class="text-body-md text-on-surface">Omar used 90% of his budget this month.</p>
+</div>
+</div>
+<!-- Insight 2 -->
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest p-4 rounded-xl shadow-[0_2px_10px_0_rgba(0,0,0,0.02)] flex items-start gap-3 border border-outline-variant">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-on-secondary-container">trending_down</span>
+</div>
+<div>
+<p class="text-body-md text-on-surface">Savings are up 12% compared to February.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Member Budgets -->
+<section class="space-y-stack-md">
+<div class="flex justify-between items-center">
+<h3 class="font-label-lg text-on-surface-variant uppercase ml-1">Member Budgets</h3>
+<button class="text-primary font-label-lg flex items-center gap-1">
+                    Manage All <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Ahmed -->
+<div class="bg-surface-container-lowest p-5 rounded-card shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Ahmed" class="w-full h-full object-cover" data-alt="A portrait of a young adult male with a confident smile, wearing casual modern attire. The background is a minimalist urban setting with soft morning light. The image style is bright, clean, and optimistic, maintaining the warm and trustworthy aesthetic of the family finance app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1dtli8PAl2e5lsLlkoUpQ7tSdIAnXPjWHDUuWkA1zN13nRi6q3j-M01dd2n8DN3mC6YOt4ABMGAQSSDmxxKjsLtqYZL2YXyTjcj48UMC89MM3uLAjKruWT2UdDrrJdjAroQBnr_mrQKThuX-etpYXOhOY9dkqNNOazO7lNbmwx6eA18aROOlrdvs1OliYqj4sulCy-nzaoSMo5mlg97X93XKe2yPINwLZVhKxLPR9z48UraiZpFdnnLvoAFzLF70i9j53cwnJ7Fw"/>
+</div>
+<div>
+<p class="font-headline-md text-primary">Ahmed</p>
+<p class="text-label-md text-on-surface-variant">$450.00 / $600.00</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-background border border-primary text-primary rounded-full font-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                        Increase
+                    </button>
+</div>
+<!-- Sarah -->
+<div class="bg-surface-container-lowest p-5 rounded-card shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Sarah" class="w-full h-full object-cover" data-alt="A portrait of a young woman with a joyful expression, wearing a stylish minimalist outfit. She is in a well-lit modern cafe with warm wooden textures in the background. The lighting is soft and flattering, creating a premium and approachable atmosphere consistent with a guided stability design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq7HGGEaMIwm1mOSQrACIGq-BQUTsfk3Lc3CnkZJL-AtxyC6zxXRCBdIpgxT-WHPky6VE8BtD1q8LE0RIs3iWeLTLPmfVoBT7uEplO4XVpCkWGiNLAqP_1jgvw7yzpI0ISCUiIPOrD7zlXAG1VdcR8W9Snp0UhDWTWwn39G0UIYtLeweAIPO4VRW_AY2J-yFIzLCMJnYHf6giOyOJmRZRjmwmR2l_7FCwU9DU3EDsXBJzv6CHty6t4TJofFtetAUsBzLp2RH2hVsU"/>
+</div>
+<div>
+<p class="font-headline-md text-primary">Sarah</p>
+<p class="text-label-md text-on-surface-variant">$320.00 / $800.00</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-background border border-primary text-primary rounded-full font-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                        Increase
+                    </button>
+</div>
+<!-- Omar -->
+<div class="bg-surface-container-lowest p-5 rounded-card shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex items-center justify-between border-2 border-error-container">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Omar" class="w-full h-full object-cover" data-alt="A portrait of a teenage boy looking towards the camera with a thoughtful look. He is in a clean, high-end school library with soft ambient lighting. The visual style is modern, with clear focus and a high-quality aesthetic that emphasizes family and organized financial management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJQASitAkGzaDRwLnwNqzGZUnvXg2sAM8cq06Zv26ALWmE7pjmy9luLqyUoX04tSzUUJeJw_5UvrH99Yvl6K4aYDLSs3X28t4eUHAnExvTzwy8ulwifJxE4FOPoe206YSm7kdlqdofWOmjWzjfu0JdB7r7EdWYlZnJTwpi-LGpfzvxG4Gk2TSLFGWcMZhkYT3nAEul6-JjWXqBHBrIZ2ysvmllzMIQuZB2Df_ctsy527nAhIUp7oAdZvZNluM1zeKiA13B4agZ-Qg"/>
+</div>
+<div>
+<p class="font-headline-md text-primary">Omar</p>
+<p class="text-label-md text-error font-semibold">$540.00 / $600.00</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-background border border-primary text-primary rounded-full font-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                        Increase
+                    </button>
+</div>
+<!-- Jana -->
+<div class="bg-surface-container-lowest p-5 rounded-card shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Jana" class="w-full h-full object-cover" data-alt="A portrait of a young girl with a happy, bright expression. The setting is a sunny living room with soft, high-key lighting that creates a clean and warm domestic feel. The image composition is minimalist and high-end, fitting the premium concierge feel of the family finance platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxEvS8WO6TE9gXJ9F8L_jF5bEllJzgykCLZh_rf480XgB52uxZn-uE-4EHIEl3Oaz8q_Eul7nFhSE1XKeEqdfjoSUEc9aaqJDcrVL69X1MKDBPmOrt5qeBZLqar-qe0nFPhZ4d3tjgW-eNpupnhysrwja9Qwnsd5628_10b4qbkUCc9QGIpoo-66SNKd-plFOk9XVg42UYHtahvFwmdip6nTeHqR__6DNeTvGBflNSdk5j2HSVXpZ-hY87g6fbwMxjghxwo6IjGrg"/>
+</div>
+<div>
+<p class="font-headline-md text-primary">Jana</p>
+<p class="text-label-md text-on-surface-variant">$150.00 / $300.00</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-background border border-primary text-primary rounded-full font-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                        Increase
+                    </button>
+</div>
+</div>
+</section>
+<!-- Budget History -->
+<section class="space-y-stack-md">
+<h3 class="font-label-lg text-on-surface-variant uppercase ml-1">Budget History</h3>
+<div class="bg-surface-container-low rounded-card p-4 space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-container rounded-full">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">add</span>
+</div>
+<div>
+<p class="text-body-md font-semibold text-on-surface">+$50.00 for School Trip</p>
+<p class="text-label-md text-on-surface-variant">Mar 12, 2024 • Sarah's Budget</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-container rounded-full">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">edit</span>
+</div>
+<div>
+<p class="text-body-md font-semibold text-on-surface">Monthly Refresh</p>
+<p class="text-label-md text-on-surface-variant">Mar 01, 2024 • Family Total</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Action -->
+<footer class="pt-stack-lg flex flex-col items-center">
+<button class="w-full py-4 border border-primary text-primary rounded-xl font-headline-md hover:bg-surface-container transition-all active:scale-[0.98]">
+                Start New Month
+            </button>
+<p class="text-label-md text-on-surface-variant mt-4 text-center">Plan ahead by configuring the April 2024 targets now.</p>
+</footer>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-surface-container-lowest shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] rounded-t-xl z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined">reorder</span>
+<span class="font-label-lg text-label-lg">Requests</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-lg text-label-lg">Family</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-transform active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">target</span>
+<span class="font-label-lg text-label-lg">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-lg text-label-lg">More</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for progress bar
+        window.addEventListener('DOMContentLoaded', () => {
+            const bar = document.querySelector('.bg-secondary.h-full');
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = '75%';
+            }, 300);
+        });
+    </script>
+</body></html>

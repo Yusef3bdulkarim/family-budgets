@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Add Saving - Family Budget</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#1a2b4b",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#d8e2ff",
+                      "secondary-fixed-dim": "#88d982",
+                      "primary": "#031635",
+                      "inverse-surface": "#2e3132",
+                      "surface-container": "#edeeef",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#191c1d",
+                      "on-secondary-fixed-variant": "#005312",
+                      "outline-variant": "#c5c6cf",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#ebb2ff",
+                      "tertiary-container": "#4a0067",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#f8f9fa",
+                      "tertiary-fixed": "#f8d8ff",
+                      "outline": "#75777f",
+                      "on-surface-variant": "#44474e",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e1e3e4",
+                      "inverse-primary": "#b6c6ef",
+                      "surface": "#f8f9fa",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#217128",
+                      "tertiary": "#2b003d",
+                      "on-primary-fixed-variant": "#364768",
+                      "surface-container-low": "#f3f4f5",
+                      "surface-tint": "#4e5e81",
+                      "secondary": "#1b6d24",
+                      "on-tertiary-fixed": "#320047",
+                      "on-primary-container": "#8293b8",
+                      "secondary-fixed": "#a3f69c",
+                      "on-tertiary-container": "#c66ced",
+                      "surface-dim": "#d9dadb",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "surface-container-high": "#e7e8e9",
+                      "secondary-container": "#a0f399",
+                      "on-tertiary-fixed-variant": "#721199",
+                      "on-primary-fixed": "#081b3a",
+                      "on-secondary-fixed": "#002204",
+                      "on-surface": "#191c1d",
+                      "surface-variant": "#e1e3e4",
+                      "background": "#f8f9fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "container-margin": "20px",
+                      "stack-lg": "24px",
+                      "section-padding": "32px",
+                      "stack-sm": "8px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .bottom-sheet.open {
+            transform: translateY(0);
+        }
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .allocation-card.selected {
+            border-color: #031635;
+            background-color: #f3f4f5;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-surface antialiased overflow-hidden">
+<!-- Content Behind (Goals Screen Mock) -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-margin h-16 w-full shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden">
+<img alt="Family Member" class="w-full h-full object-cover" data-alt="A warm and professional portrait of a family member with a friendly smile, set against a soft, high-key studio background with clean lighting and a minimalist aesthetic that conveys trust and organization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_IM1ZoALeaPK71_86eTe2nxMBm4IO6EKEFfRbOd0ApFWam3Lws5r743ZmrHfft4_QEQNzHqRzH7Hra1Mm_WTn-KMY7IEq7WiiuLBo6aK9tRMPGDRyWiVONdimoFCfnEyCac0BMCoj20rrtMXILQZYbeGA-ckbRApOGRshC3JElt96eWCy3X9NvE-4cD8x4657C--6qaaRBDItjoIi638UthfmtijU64WnqcLH0FbCXma6V21oQMs8dI5mjywFIR-0wnyzCjcC1Y4"/>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Family Budget</span>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">notifications</button>
+</header>
+<main class="pt-20 px-container-margin pb-32">
+<div class="flex justify-between items-end mb-8">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Total Savings</p>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary">$12,450.00</h1>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-slate-200"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-slate-300"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-slate-400"></div>
+</div>
+</div>
+<!-- Goals Bento Grid -->
+<div class="grid grid-cols-1 gap-stack-md">
+<div class="bg-surface-container-lowest p-5 rounded-[24px] custom-shadow border border-surface-container">
+<div class="flex justify-between mb-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">beach_access</span>
+</div>
+<span class="text-secondary font-label-lg text-label-lg">On Track</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Summer Vacation</h3>
+<p class="text-on-surface-variant font-label-md text-label-md mb-4">$3,200 of $5,000 saved</p>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 64%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-[24px] custom-shadow border border-surface-container">
+<div class="flex justify-between mb-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">home</span>
+</div>
+<span class="text-on-surface-variant font-label-lg text-label-lg">45% Completed</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">New Home Fund</h3>
+<p class="text-on-surface-variant font-label-md text-label-md mb-4">$45,000 of $100,000 saved</p>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-surface-dim shadow-[0_-4px_20px_rgba(0,0,0,0.04)] flex justify-around items-center h-20 w-full px-2 pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-label-md text-label-md">Requests</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Family</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-label-md text-label-md">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-md text-label-md">More</span>
+</button>
+</nav>
+<!-- Modal Trigger (Floating Action Button) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-40 active:scale-95 transition-transform" id="openModal">
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- Overlay / Backdrop -->
+<div class="overlay fixed inset-0 bg-black/40 z-[60] backdrop-blur-sm" id="modalOverlay"></div>
+<!-- Bottom Sheet Modal -->
+<div class="bottom-sheet fixed bottom-0 left-0 right-0 bg-surface-container-lowest rounded-t-[32px] z-[70] px-container-margin pt-4 pb-10 shadow-2xl max-h-[795px] overflow-y-auto" id="bottomSheet">
+<!-- Handle -->
+<div class="flex justify-center mb-6">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<div class="mb-section-padding">
+<h2 class="font-headline-lg text-headline-lg text-primary text-center">Add to Savings</h2>
+<p class="text-on-surface-variant text-center mt-1">Grow your family's future together.</p>
+</div>
+<!-- Currency Input -->
+<div class="mb-stack-lg">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Amount</label>
+<div class="relative group">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 text-headline-lg font-headline-lg text-secondary">$</span>
+<input class="w-full bg-surface-container-low border-2 border-transparent focus:border-secondary focus:ring-0 rounded-[24px] py-6 pl-12 pr-6 text-display-lg-mobile font-display-lg-mobile text-primary placeholder:text-outline-variant transition-all outline-none" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Allocation Cards -->
+<div class="mb-stack-lg">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Allocation Options</label>
+<div class="grid grid-cols-1 gap-stack-md">
+<!-- Option 1 -->
+<button class="allocation-card group flex items-start gap-4 p-5 border border-outline-variant rounded-[24px] text-left transition-all hover:bg-surface-container-low active:scale-[0.98]" onclick="selectOption(this)">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0 group-[.selected]:bg-secondary">
+<span class="material-symbols-outlined text-secondary group-[.selected]:text-on-secondary">beach_access</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary">Family Goal</p>
+<p class="text-on-surface-variant font-body-md text-body-md">Summer Vacation</p>
+</div>
+<div class="ml-auto mt-1">
+<span class="material-symbols-outlined text-outline-variant group-[.selected]:text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Option 2 -->
+<button class="allocation-card group flex items-start gap-4 p-5 border border-outline-variant rounded-[24px] text-left transition-all hover:bg-surface-container-low active:scale-[0.98]" onclick="selectOption(this)">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center flex-shrink-0 group-[.selected]:bg-primary">
+<span class="material-symbols-outlined text-primary group-[.selected]:text-on-primary">person</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary">Member Balance</p>
+<p class="text-on-surface-variant font-body-md text-body-md">General account credit</p>
+</div>
+<div class="ml-auto mt-1">
+<span class="material-symbols-outlined text-outline-variant group-[.selected]:text-primary" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Toggle Section -->
+<div class="flex items-center justify-between mb-section-padding bg-surface-container-low p-4 rounded-[20px]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">person_search</span>
+<span class="font-body-md text-body-md text-on-surface">Apply to specific member</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-4 rounded-[24px] shadow-lg active:scale-[0.98] transition-transform">
+                Confirm Saving
+            </button>
+<button class="w-full py-4 text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" id="closeModal">
+                Cancel
+            </button>
+</div>
+</div>
+<script>
+        const openBtn = document.getElementById('openModal');
+        const closeBtn = document.getElementById('closeModal');
+        const overlay = document.getElementById('modalOverlay');
+        const sheet = document.getElementById('bottomSheet');
+
+        function toggleModal(open) {
+            if (open) {
+                overlay.classList.add('active');
+                sheet.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.classList.remove('active');
+                sheet.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        openBtn.addEventListener('click', () => toggleModal(true));
+        closeBtn.addEventListener('click', () => toggleModal(false));
+        overlay.addEventListener('click', () => toggleModal(false));
+
+        function selectOption(el) {
+            const cards = document.querySelectorAll('.allocation-card');
+            cards.forEach(c => {
+                c.classList.remove('selected');
+                const icon = c.querySelector('.ml-auto span');
+                if (icon) icon.innerText = 'radio_button_unchecked';
+            });
+            el.classList.add('selected');
+            const activeIcon = el.querySelector('.ml-auto span');
+            if (activeIcon) activeIcon.innerText = 'check_circle';
+        }
+
+        // Initialize with first selected
+        document.querySelectorAll('.allocation-card')[0].classList.add('selected');
+        document.querySelectorAll('.allocation-card')[0].querySelector('.ml-auto span').innerText = 'check_circle';
+
+        // Auto open for demonstration
+        setTimeout(() => toggleModal(true), 800);
+    </script>
+</body></html>

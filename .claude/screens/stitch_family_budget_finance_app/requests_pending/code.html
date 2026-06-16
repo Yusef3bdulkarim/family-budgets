@@ -1,0 +1,280 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .safe-top { padding-top: env(safe-area-inset-top); }
+        .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        
+        /* Kinetic Trust specific soft layering */
+        .glass-card {
+            background: #ffffff;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(233, 236, 239, 0.5);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#75777f",
+                      "on-primary-fixed-variant": "#364768",
+                      "primary-container": "#1a2b4b",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#f8d8ff",
+                      "surface": "#f8f9fa",
+                      "surface-tint": "#4e5e81",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9fa",
+                      "secondary-fixed": "#a3f69c",
+                      "on-tertiary-fixed": "#320047",
+                      "on-primary-container": "#8293b8",
+                      "surface-container-high": "#e7e8e9",
+                      "outline-variant": "#c5c6cf",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#d8e2ff",
+                      "on-primary-fixed": "#081b3a",
+                      "tertiary-container": "#4a0067",
+                      "on-surface-variant": "#44474e",
+                      "on-surface": "#191c1d",
+                      "on-tertiary-fixed-variant": "#721199",
+                      "on-secondary-container": "#217128",
+                      "secondary-fixed-dim": "#88d982",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e1e3e4",
+                      "secondary": "#1b6d24",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "surface-dim": "#d9dadb",
+                      "primary": "#031635",
+                      "tertiary": "#2b003d",
+                      "background": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary-fixed": "#002204",
+                      "tertiary-fixed-dim": "#ebb2ff",
+                      "on-secondary-fixed-variant": "#005312",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "on-tertiary-container": "#c66ced",
+                      "on-background": "#191c1d",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#b6c6ef",
+                      "secondary-container": "#a0f399",
+                      "surface-container": "#edeeef"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "section-padding": "32px",
+                      "container-margin": "20px",
+                      "stack-lg": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-background shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex justify-between items-center px-container-margin py-stack-md">
+<div class="flex items-center gap-stack-sm">
+<button aria-label="Menu" class="p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary">Requests</h1>
+</div>
+<button aria-label="Notifications" class="p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 transition-transform relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</header>
+<main class="px-container-margin pb-32">
+<!-- Tabs Navigation -->
+<div class="flex gap-stack-lg py-stack-md border-b border-outline-variant/30 mb-stack-lg">
+<button class="relative pb-stack-sm font-label-lg text-label-lg text-primary transition-colors">
+                Pending
+                <span class="absolute bottom-[-1px] left-0 w-full h-[3px] bg-primary rounded-t-full"></span>
+</button>
+<button class="pb-stack-sm font-label-lg text-label-lg text-outline transition-colors hover:text-on-surface-variant">
+                History
+            </button>
+</div>
+<!-- Request List -->
+<div class="flex flex-col gap-stack-lg">
+<!-- Section Header -->
+<div class="flex items-center justify-between">
+<h2 class="font-label-lg text-label-lg text-outline uppercase tracking-wider">Today</h2>
+</div>
+<!-- Card 1: Omar -->
+<div class="glass-card rounded-[24px] p-5 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed ring-2 ring-surface">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young boy with a joyful expression, wearing a casual t-shirt in a bright, sun-drenched modern room. The lighting is soft and high-key, reflecting a warm, trustworthy family atmosphere with a clean, minimalist aesthetic and a premium, concierge feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL23dCvDgJZAaKH2mk8-BSJmgYzUNClSi6EPEBlU3Ij45FGiwdOjYC64Lnkrg1DVfP8qFqn1kxpf-cpkDB9yf3UfUZK6nMLCd9fYp7i70ruBXOB0zzpgnyoDwnJn6lewhvBbV7Au-fOil36yCfxjG3xQZ2Xtyce7ClRTX1Ir_ooJYP-vPFiYihOjzteAg3q2_18mEVcKHIOe4tReejfpRlQ9mwJoB938Rxry6rjfkPuTPAmjIEaD4eU410ix--a2pnwCAsASt-kf8">
+</div>
+<div>
+<p class="font-headline-md text-[16px] text-primary">Omar</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-on-primary-fixed-variant">sports_esports</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Gaming</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-lg text-headline-lg-mobile text-primary">$25.00</p>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container text-on-secondary-container">
+                            Pending
+                        </span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3">
+<p class="font-body-md text-body-md text-on-surface-variant italic">"New skin for Fortnite"</p>
+</div>
+<div class="flex gap-3 pt-2">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-lg text-label-lg rounded-full active:scale-95 transition-all shadow-sm">
+                        Approve
+                    </button>
+<button class="flex-1 py-3 border border-outline text-primary font-label-lg text-label-lg rounded-full active:scale-95 transition-all">
+                        Reject
+                    </button>
+</div>
+</div>
+<!-- Section Header -->
+<div class="flex items-center justify-between mt-stack-sm">
+<h2 class="font-label-lg text-label-lg text-outline uppercase tracking-wider">Yesterday</h2>
+</div>
+<!-- Card 2: Jana -->
+<div class="glass-card rounded-[24px] p-5 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-tertiary-fixed ring-2 ring-surface">
+<img class="w-full h-full object-cover" data-alt="A portrait of a teenage girl reading in a modern, light-filled library setting. The image uses a soft, premium aesthetic with gentle shadows and a bright color palette of whites and soft pastels, evoking a sense of calm, organized, and guided stability for a family financial app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIjSKyVg-3-EA4e8KwBlYBmvmVJ2HMIdDnC_57onu4fZsajePr-5X3ddLDGMueqLNtBpuEdZn4SrIYpiZVR5Ejj9OAZfqF-kFDEU4YslT7C4326xjKo7BDwj_nl1anp3ObK-RW80sexIyT_wFxhKJSichPHOnB8taidCGn_0UkOH18mJjPi5kVRmPyzD-UDvGX0hhBTSNBvPNUCXMJdA-R6rBe-Dqf-Y3e0s1WN6UKyVaOJBNU_W0a8q028JfUlIimuqH-OHL2b3M">
+</div>
+<div>
+<p class="font-headline-md text-[16px] text-primary">Jana</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-fixed-variant">menu_book</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Books</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-lg text-headline-lg-mobile text-primary">$15.00</p>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container text-on-secondary-container">
+                            Pending
+                        </span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3">
+<p class="font-body-md text-body-md text-on-surface-variant italic">"School library book"</p>
+</div>
+<div class="flex gap-3 pt-2">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-lg text-label-lg rounded-full active:scale-95 transition-all shadow-sm">
+                        Approve
+                    </button>
+<button class="flex-1 py-3 border border-outline text-primary font-label-lg text-label-lg rounded-full active:scale-95 transition-all">
+                        Reject
+                    </button>
+</div>
+</div>
+<!-- Additional Contextual Graphic (Budget Visualizer) -->
+<div class="mt-stack-lg glass-card rounded-[24px] p-5 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Family Monthly Goal</h3>
+<p class="font-label-md text-label-md text-outline mb-4">You've saved $420 of $1000 this month</p>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full mb-2">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 42%;"></div>
+</div>
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>42% reached</span>
+<span>$580 to go</span>
+</div>
+</div>
+<!-- Abstract Atmospheric Wave -->
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[120px] text-primary rotate-12" style="font-variation-settings: 'FILL' 1;">savings</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 pb-safe bg-surface-container-lowest dark:bg-surface-dim shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+<span class="font-label-md text-label-md font-bold">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-md text-label-md">More</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.innerText === 'Approve' || this.innerText === 'Reject') {
+                    const card = this.closest('.glass-card');
+                    card.style.transform = 'scale(0.95)';
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body></html>

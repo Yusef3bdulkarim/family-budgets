@@ -1,0 +1,251 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Reject Request - Family Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#75777f",
+                    "on-primary-fixed-variant": "#364768",
+                    "primary-container": "#1a2b4b",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#f8d8ff",
+                    "surface": "#f8f9fa",
+                    "surface-tint": "#4e5e81",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f8f9fa",
+                    "secondary-fixed": "#a3f69c",
+                    "on-tertiary-fixed": "#320047",
+                    "on-primary-container": "#8293b8",
+                    "surface-container-high": "#e7e8e9",
+                    "outline-variant": "#c5c6cf",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary-fixed": "#081b3a",
+                    "tertiary-container": "#4a0067",
+                    "on-surface-variant": "#44474e",
+                    "on-surface": "#191c1d",
+                    "on-tertiary-fixed-variant": "#721199",
+                    "on-secondary-container": "#217128",
+                    "secondary-fixed-dim": "#88d982",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e1e3e4",
+                    "secondary": "#1b6d24",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-dim": "#d9dadb",
+                    "primary": "#031635",
+                    "tertiary": "#2b003d",
+                    "background": "#f8f9fa",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f3f4f5",
+                    "on-secondary-fixed": "#002204",
+                    "tertiary-fixed-dim": "#ebb2ff",
+                    "on-secondary-fixed-variant": "#005312",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "on-tertiary-container": "#c66ced",
+                    "on-background": "#191c1d",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#b6c6ef",
+                    "secondary-container": "#a0f399",
+                    "surface-container": "#edeeef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "section-padding": "32px",
+                    "container-margin": "20px",
+                    "stack-lg": "24px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .rejection-option.active {
+            border-color: #031635;
+            background-color: #d8e2ff;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-surface shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex justify-between items-center px-container-margin py-stack-md">
+<div class="flex items-center gap-4">
+<button aria-label="Back" class="active:scale-95 transition-transform hover:bg-surface-container-low p-2 rounded-full text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary">Reject Request</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="active:scale-95 transition-transform hover:bg-surface-container-low p-2 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-container-margin py-stack-lg max-w-md mx-auto w-full space-y-section-padding">
+<!-- Summary Card -->
+<section class="bg-surface-container-lowest rounded-[24px] p-stack-lg custom-shadow flex items-center space-x-stack-md">
+<div class="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
+<img alt="Omar's Avatar" class="w-full h-full object-cover" data-alt="A 3D rendered avatar of a young teenager named Omar with a friendly expression, wearing a modern navy blue hoodie. The background is a soft, blurred studio environment with warm lighting that complements a clean, professional financial app aesthetic. High-quality digital character design with soft shadows and realistic textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV5kem1QHAvA3NyGOWc8HdrTdC79EAzKUV3EGSwcE-VMRzEcRy5bRVOSvf4xCyi8AgQxE0OX4zcmMrj2jtQTisRVl4cIYf8t7rc9KCBHyFdf8hrs04_SObCe8Fwa_DHoMCO3qKAzf8fFfkiBcbGl9kvrjfbRZLaOUdJwfnX98poJx-R20kSTBxifFh70NO1iRhwuUjtPFoYN0GsmeZg-ghp2XzWWXQDwyGmof6ULELpA-XVu1O0scRw5US40Fw5ElleGT2-YKNzb4">
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Request from</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Omar</h2>
+</div>
+<div class="text-right">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">$25.00</p>
+<div class="flex items-center gap-1 text-on-surface-variant justify-end">
+<span class="material-symbols-outlined text-[14px]">sports_esports</span>
+<span class="font-label-md text-label-md">Gaming</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Rejection Reasons Section -->
+<section class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Reason for rejection</h3>
+<span class="text-error font-label-md text-label-md">* Required</span>
+</div>
+<div class="space-y-stack-sm" id="rejection-options">
+<button class="rejection-option w-full flex items-center justify-between p-stack-md bg-surface-container-lowest border border-outline-variant rounded-[24px] transition-all hover:border-primary active:scale-[0.98] text-left" onclick="selectReason(this)">
+<span class="font-body-lg text-body-lg text-on-surface">Budget limit reached</span>
+<span class="material-symbols-outlined text-outline checkmark hidden">check_circle</span>
+</button>
+<button class="rejection-option w-full flex items-center justify-between p-stack-md bg-surface-container-lowest border border-outline-variant rounded-[24px] transition-all hover:border-primary active:scale-[0.98] text-left" onclick="selectReason(this)">
+<span class="font-body-lg text-body-lg text-on-surface">Not necessary now</span>
+<span class="material-symbols-outlined text-outline checkmark hidden">check_circle</span>
+</button>
+<button class="rejection-option w-full flex items-center justify-between p-stack-md bg-surface-container-lowest border border-outline-variant rounded-[24px] transition-all hover:border-primary active:scale-[0.98] text-left" onclick="selectReason(this)">
+<span class="font-body-lg text-body-lg text-on-surface">Other</span>
+<span class="material-symbols-outlined text-outline checkmark hidden">check_circle</span>
+</button>
+</div>
+</section>
+<!-- Optional Note Section -->
+<section class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Note (Optional)</h3>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-[24px] p-stack-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none min-h-[120px]" placeholder="Tell Omar why..."></textarea>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant px-2 italic">A kind explanation helps build better financial habits.</p>
+</section>
+<!-- Visual Context/Aesthetic Element (Bento-like hint) -->
+<section class="grid grid-cols-2 gap-stack-md opacity-50">
+<div class="bg-primary-container/10 p-stack-md rounded-[24px] border border-primary-container/20">
+<span class="material-symbols-outlined text-primary mb-2">shield_with_heart</span>
+<p class="font-label-md text-label-md text-primary">Secure Action</p>
+</div>
+<div class="bg-secondary-container/10 p-stack-md rounded-[24px] border border-secondary-container/20">
+<span class="material-symbols-outlined text-secondary mb-2">trending_up</span>
+<p class="font-label-md text-label-md text-secondary">Budget Health</p>
+</div>
+</section>
+</main>
+<!-- Footer Action -->
+<footer class="sticky bottom-0 bg-surface p-container-margin safe-area-bottom custom-shadow z-50">
+<div class="max-w-md mx-auto w-full">
+<button class="w-full bg-primary text-on-primary font-label-lg text-label-lg py-4 rounded-full active:scale-95 transition-all opacity-50 cursor-not-allowed disabled:hover:opacity-50 hover:opacity-90 flex items-center justify-center gap-2" disabled="" id="confirmBtn">
+<span>Confirm Rejection</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</footer>
+<script>
+        function selectReason(element) {
+            // Remove active class from all
+            document.querySelectorAll('.rejection-option').forEach(opt => {
+                opt.classList.remove('active', 'border-primary', 'bg-primary-fixed');
+                opt.querySelector('.checkmark').classList.add('hidden');
+            });
+
+            // Add active to selected
+            element.classList.add('active', 'border-primary', 'bg-primary-fixed');
+            element.querySelector('.checkmark').classList.remove('hidden');
+            element.querySelector('.checkmark').style.fontVariationSettings = "'FILL' 1";
+
+            // Enable Button
+            const confirmBtn = document.getElementById('confirmBtn');
+            confirmBtn.disabled = false;
+            confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Handle text area focus animations
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('focus', () => {
+            textarea.parentElement.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Simple confirmation interaction
+        document.getElementById('confirmBtn').addEventListener('click', function() {
+            if (this.disabled) return;
+            this.innerHTML = '<span class="animate-spin material-symbols-outlined">progress_activity</span> Processing...';
+            this.disabled = true;
+            setTimeout(() => {
+                alert('Request has been rejected. Omar will be notified.');
+                this.innerHTML = 'Confirmed';
+                this.classList.add('bg-secondary');
+            }, 1200);
+        });
+    </script>
+</body></html>

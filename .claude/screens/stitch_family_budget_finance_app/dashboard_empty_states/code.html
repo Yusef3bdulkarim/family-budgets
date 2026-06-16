@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Family Manager Dashboard - Empty State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1a2b4b",
+                    "tertiary-container": "#4a0067",
+                    "surface": "#f8f9fa",
+                    "surface-tint": "#4e5e81",
+                    "outline-variant": "#c5c6cf",
+                    "on-primary-container": "#8293b8",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#a3f69c",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#a0f399",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#2b003d",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary-container": "#217128",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#081b3a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ebb2ff",
+                    "tertiary-fixed": "#f8d8ff",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "outline": "#75777f",
+                    "on-background": "#191c1d",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#88d982",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary-fixed": "#320047",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-fixed-variant": "#364768",
+                    "on-tertiary-container": "#c66ced",
+                    "on-surface-variant": "#44474e",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed-variant": "#005312",
+                    "surface-bright": "#f8f9fa",
+                    "background": "#f8f9fa",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary": "#1b6d24",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary-fixed-variant": "#721199",
+                    "on-secondary-fixed": "#002204",
+                    "inverse-primary": "#b6c6ef",
+                    "primary": "#031635",
+                    "surface-container": "#edeeef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "24px",
+                    "section-padding": "32px",
+                    "gutter": "16px",
+                    "stack-sm": "8px",
+                    "container-margin": "20px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            shadow-color: rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-on-surface">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background flex justify-between items-center px-container-margin py-stack-md w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed border border-outline-variant">
+<img alt="Manager Avatar" class="w-full h-full object-cover" data-alt="A professional and friendly portrait of a middle-aged father smiling warmly, captured in soft, natural studio lighting. The background is a clean, minimalist neutral grey, reflecting a modern and organized executive lifestyle. He wears a crisp white button-down shirt, emphasizing a high-end, trustworthy, and concierge-like aesthetic consistent with a premium family financial application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW8qCYhIgs1a3gEN8jIuCOuy8kyksyBjwoFAHQm594b0rGpYy60On8b9tT-Ud5OWqIz1rS9h8cwHPB9XgjLTV4Jo9qenTffwVGD0UtLTtFj-TIEJewCUCqf2GBvkr7JRGbU8poafXywHefyO6x7tWEgVbG-gmfTrPAKvDn9ALrdSNsYAL98IA3JPdyHRcPvd6IVJvtbuKGm50qVPyepG-NcnqILEWx6sTrpw075r-AU7Xm1wVWymQ8BcFuL9gFChYDqW07YkznpJI">
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-inverse-primary">Welcome, Manager</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+            notifications
+        </button>
+</header>
+<main class="flex-grow px-container-margin pb-32">
+<!-- Summary Dashboard (Brief Context) -->
+<section class="mt-stack-lg">
+<div class="bg-primary text-on-primary rounded-[24px] p-stack-lg card-shadow flex flex-col gap-1">
+<p class="font-label-lg text-label-lg opacity-80">Family Net Worth</p>
+<h2 class="font-display-lg-mobile text-display-lg-mobile">$142,500.00</h2>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-md text-label-md">+2.4%</span>
+<span class="font-label-md text-label-md opacity-70 text-on-primary-container">vs last month</span>
+</div>
+</div>
+</section>
+<!-- Requests Section: Empty State -->
+<section class="mt-section-padding">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-md text-headline-md text-primary">Pending Requests</h3>
+<span class="font-label-lg text-label-lg text-secondary">View All</span>
+</div>
+<div class="bg-white rounded-[24px] p-8 card-shadow flex flex-col items-center text-center gap-4 border border-surface-container">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px] text-on-primary-container">done_all</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-1">All Clear!</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[240px]">No pending requests yet. Your family is doing great!</p>
+</div>
+</div>
+</section>
+<!-- Goals Section: Empty State (Bento Style) -->
+<section class="mt-section-padding">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Active Goals</h3>
+<div class="grid grid-cols-1 gap-stack-md">
+<div class="relative overflow-hidden bg-white rounded-[24px] p-6 border-2 border-dashed border-outline-variant flex flex-col items-center justify-center min-h-[180px] hover:border-primary-container transition-colors group cursor-pointer">
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+
+</div>
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center mb-4 active:scale-90 transition-transform shadow-lg group-hover:scale-110">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<p class="font-body-lg text-body-lg text-primary text-center px-4">No active goal. Create a goal to start saving together!</p>
+</div>
+</div>
+</section>
+<!-- Informational Chips / Quick Insights -->
+<section class="mt-section-padding grid grid-cols-2 gap-stack-md">
+<div class="bg-surface-container-low p-stack-md rounded-[24px] flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary">security</span>
+<p class="font-label-lg text-label-lg text-on-surface">Secure Vault</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Active</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-[24px] flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">diversity_3</span>
+<p class="font-label-lg text-label-lg text-on-surface">4 Members</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Connected</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest flex justify-around items-center px-4 pb-6 pt-3 shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="ads_click">ads_click</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-label-md text-label-md">More</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for clicking navigation items
+        document.querySelectorAll('nav a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                // In a real app, this would handle navigation
+                // For this demo, we'll just toggle the active classes
+                document.querySelectorAll('nav a').forEach(nav => {
+                    nav.className = "flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200";
+                    const icon = nav.querySelector('.material-symbols-outlined');
+                    if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                
+                item.className = "flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200";
+                const activeIcon = item.querySelector('.material-symbols-outlined');
+                if (activeIcon) activeIcon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+
+        // Add interaction to the 'Create Goal' card
+        const createGoalBtn = document.querySelector('.cursor-pointer');
+        createGoalBtn.addEventListener('click', () => {
+            // Visual feedback
+            createGoalBtn.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                createGoalBtn.style.transform = 'scale(1)';
+            }, 100);
+        });
+    </script>
+</body></html>

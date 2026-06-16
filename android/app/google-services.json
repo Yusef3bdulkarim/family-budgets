@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "733458642382",
+    "project_id": "family-badgets",
+    "storage_bucket": "family-badgets.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733458642382:android:242d9cecef8d27df65e79f",
+        "android_client_info": {
+          "package_name": "com.example.family_budgets"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxZjGayP2eFzvwq6pW0hVHKeMVcP1d9Vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

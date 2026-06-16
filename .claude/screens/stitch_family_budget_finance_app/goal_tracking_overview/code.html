@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Family Budget - Goal Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1a2b4b",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#d8e2ff",
+                    "secondary-fixed-dim": "#88d982",
+                    "primary": "#031635",
+                    "inverse-surface": "#2e3132",
+                    "surface-container": "#edeeef",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#191c1d",
+                    "on-secondary-fixed-variant": "#005312",
+                    "outline-variant": "#c5c6cf",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ebb2ff",
+                    "tertiary-container": "#4a0067",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "tertiary-fixed": "#f8d8ff",
+                    "outline": "#75777f",
+                    "on-surface-variant": "#44474e",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e1e3e4",
+                    "inverse-primary": "#b6c6ef",
+                    "surface": "#f8f9fa",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#217128",
+                    "tertiary": "#2b003d",
+                    "on-primary-fixed-variant": "#364768",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-tint": "#4e5e81",
+                    "secondary": "#1b6d24",
+                    "on-tertiary-fixed": "#320047",
+                    "on-primary-container": "#8293b8",
+                    "secondary-fixed": "#a3f69c",
+                    "on-tertiary-container": "#c66ced",
+                    "surface-dim": "#d9dadb",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-high": "#e7e8e9",
+                    "secondary-container": "#a0f399",
+                    "on-tertiary-fixed-variant": "#721199",
+                    "on-primary-fixed": "#081b3a",
+                    "on-secondary-fixed": "#002204",
+                    "on-surface": "#191c1d",
+                    "surface-variant": "#e1e3e4",
+                    "background": "#f8f9fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "container-margin": "20px",
+                    "stack-lg": "24px",
+                    "section-padding": "32px",
+                    "stack-sm": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .active-pill {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .progress-gradient {
+            background: linear-gradient(90deg, #1b6d24 0%, #a0f399 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex justify-between items-center px-container-margin h-16">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional and warm studio portrait of a middle-aged family man with a friendly smile, representing the family manager role. The lighting is soft and natural, with a blurred minimalist domestic background. The image has a high-end, clean aesthetic using a primary deep blue and soft white palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWBGzgnFCCugS00FGJkuQOd0zPehOfjDmbqOE_bztBoxhi3A0MTAv7xgzFBg3-BcCEg9ZDS617qE51xkaO6uUdNof7xih-Y_jQcgUuUohWcsH_1ezT5tL727dy7rUuC2tCEa3lk9ffzxpo8ra96Vp1LGufB_sHmbwjz2a1rmZyNuq9l6MtnsStiGAmJGwwhnI1sZdUMKYgmYBTgiyCbTDmEIZvhv0XBLXSbjhLBcPpso6AIi52AcYMdyWUAYjA7WqAmn4k4YZ8gvI"/>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">Family Budget</span>
+</div>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95">notifications</button>
+</header>
+<main class="mt-20 px-container-margin space-y-section-padding">
+<!-- Header Section -->
+<section class="space-y-1">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Goal</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Summer Vacation</p>
+</section>
+<!-- Large Progress Card -->
+<section class="relative overflow-hidden bg-surface-container-lowest rounded-[24px] p-stack-lg soft-shadow border border-surface-variant/20">
+<div class="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col space-y-stack-md">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Summer Vacation</h2>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="font-label-md text-label-md">July 2024</span>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-label-lg">
+                        65% Saved
+                    </div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">$3,250</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Target: $5,000</span>
+</div>
+<!-- High-fidelity progress bar -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full progress-gradient rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="pt-2 flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-primary-fixed-dim"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-secondary-fixed"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-tertiary-fixed"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Entire family is contributing</span>
+</div>
+</div>
+</section>
+<!-- Goal History (Monthly Growth) -->
+<section class="space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-primary px-1">Growth History</h3>
+<div class="bg-surface-container-lowest rounded-[24px] p-stack-lg soft-shadow flex flex-col space-y-stack-md">
+<div class="flex items-end justify-between h-32 px-2">
+<!-- April -->
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-12 bg-primary-fixed-dim rounded-t-lg transition-all duration-700 ease-out" style="height: 50%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Apr</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">$800</span>
+</div>
+<!-- May -->
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-12 bg-primary-fixed-dim rounded-t-lg transition-all duration-700 ease-out" style="height: 75%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">May</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">$1,200</span>
+</div>
+<!-- June -->
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-12 bg-primary rounded-t-lg transition-all duration-700 ease-out" style="height: 80%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Jun</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">$1,250</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Contribution Section -->
+<section class="space-y-stack-md pb-12">
+<div class="flex justify-between items-center px-1">
+<h3 class="font-headline-md text-headline-md text-primary">Recent Activity</h3>
+<button class="text-primary font-label-lg text-label-lg">View All</button>
+</div>
+<div class="space-y-stack-sm">
+<!-- Activity 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between soft-shadow transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="Ahmed" class="w-full h-full object-cover" data-alt="A close-up high-resolution avatar of a young adult male with modern eyewear and a friendly expression. The visual style is minimalist and high-end, utilizing a background of soft green tones and high-key studio lighting that matches a premium finance application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-ISSQ1olmZtCI1wqBYsBa_OObhX1zHlmIq1Z1DlzksXWUHLAw9hQ3Ooo_zvTwTho0jgAUJQPq5t03b85Ip9EwGHulOpMSkl8MyQLjHrPIJWUP3u52j5oUneTfwMRwVtKCJ1gpHkESoKC4flrEUh7fE33E96nKd3lYYrp_fpDrRA1F3xj_HUxA3LXVky7qSIhRvTx_g-vl_dHhtnEyT3I8PzKEjaCHFxA2-oJpjdTBHlM17rwOcnkWH6VXhQ_-0RDrsLumGPl_m6I"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-primary font-semibold">Ahmed added $200</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Today, 2:45 PM</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Activity 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between soft-shadow transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden">
+<img alt="Omar" class="w-full h-full object-cover" data-alt="A minimalist avatar photo of a teenage boy with curly hair, smiling warmly. The image is brightly lit with a soft-focus clean room background, reflecting a trustworthy family-oriented design system with vibrant primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5U9W32Zr7AP8ZZdiFEBRo0OI4YqXm-F4R1Za5hvA8VeeEqHWmidum672hhUam1STkSWNtNJyiyib4be4ltDtZPqmFdQf4udEohWOcr-GZKvxY--E7u4ztK7X6va6PLR3_88hQMRwfdStt6f_bXFyOU6Gtvgl-N2YPdhipx24BO1XwXCisk4-_WTJEX4xQeix-41TUAtRrDBc06bnmAg7diTE0pd3vgcJ379r_bPzZhNfL6qWo9z-nDwQyBQGXvUoVdJ79w0I-lO4"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-primary font-semibold">Omar added $50</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Yesterday</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Activity 3 -->
+<div class="bg-tertiary-container/5 border border-tertiary-container/10 rounded-xl p-4 flex items-center justify-between soft-shadow transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-tertiary font-semibold">Bonus Reward: $100</p>
+<p class="font-label-md text-label-md text-on-tertiary-fixed-variant">System Bonus</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary-container">info</span>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Add Saving -->
+<button class="fixed bottom-28 right-container-margin w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.04)] h-20 flex justify-around items-center px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-label-md text-label-md">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">track_changes</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-md text-label-md">More</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and simple state management
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                // Haptic feedback simulation could go here
+            });
+        });
+
+        // Animation for bar growth on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.w-12').forEach(bar => {
+                        const height = bar.style.height;
+                        bar.style.height = '0px';
+                        setTimeout(() => {
+                            bar.style.height = height;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const historySection = document.querySelector('section:has(.w-12)');
+        if (historySection) observer.observe(historySection);
+    </script>
+</body></html>

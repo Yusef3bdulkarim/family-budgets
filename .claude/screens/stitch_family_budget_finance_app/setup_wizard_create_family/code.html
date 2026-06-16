@@ -1,0 +1,204 @@
+<!DOCTYPE html><html class="light" dir="ltr" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#721199",
+                        "primary-container": "#1a2b4b",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary-fixed-dim": "#88d982",
+                        "secondary": "#1b6d24",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-fixed-variant": "#005312",
+                        "tertiary-container": "#4a0067",
+                        "surface-container": "#edeeef",
+                        "outline": "#75777f",
+                        "on-secondary-container": "#217128",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#081b3a",
+                        "on-tertiary-fixed": "#320047",
+                        "on-primary-fixed-variant": "#364768",
+                        "tertiary-fixed": "#f8d8ff",
+                        "on-secondary-fixed": "#002204",
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#c66ced",
+                        "tertiary": "#2b003d",
+                        "surface-bright": "#f8f9fa",
+                        "surface-dim": "#d9dadb",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "on-background": "#191c1d",
+                        "on-surface": "#191c1d",
+                        "on-surface-variant": "#44474e",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e1e3e4",
+                        "surface-tint": "#4e5e81",
+                        "surface-container-low": "#f3f4f5",
+                        "surface": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b6c6ef",
+                        "on-primary-container": "#8293b8",
+                        "inverse-surface": "#2e3132",
+                        "primary": "#031635",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed": "#a3f69c",
+                        "secondary-container": "#a0f399"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "card": "24px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "container-margin": "20px",
+                        "stack-md": "16px",
+                        "section-padding": "32px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .step-pill {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .input-focus-ring:focus {
+            box-shadow: 0 0 0 2px rgba(3, 22, 53, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-on-surface">
+<!-- Top Navigation -->
+<nav class="w-full top-0 sticky z-30 bg-background flex items-center justify-between px-container-margin py-stack-md">
+<button aria-label="Go back" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center items-center gap-2">
+<div class="h-1.5 w-12 bg-primary rounded-full step-pill"></div>
+<div class="h-1.5 w-4 bg-surface-container-highest rounded-full step-pill"></div>
+<div class="h-1.5 w-4 bg-surface-container-highest rounded-full step-pill"></div>
+<div class="h-1.5 w-4 bg-surface-container-highest rounded-full step-pill"></div>
+<div class="h-1.5 w-4 bg-surface-container-highest rounded-full step-pill"></div>
+</div>
+<div class="w-10"></div> <!-- Balance for centering -->
+</nav>
+<main class="flex-1 flex flex-col px-container-margin pb-32">
+<!-- Header -->
+<header class="mt-stack-lg space-y-2">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight">
+                Start your family's journey
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                Create a space where your family can manage money together.
+            </p>
+</header>
+<!-- Illustration Component -->
+<div class="relative mt-stack-lg mb-stack-lg flex justify-center">
+<div class="w-full max-w-sm aspect-square relative rounded-card overflow-hidden bg-surface-container-lowest shadow-[0_4px_20px_0_rgba(0,0,0,0.04)]">
+<img alt="Happy family looking at digital home finances" class="w-full h-full object-cover p-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT7QZlDwkONBGvC3USsz95yHIwNMIvxEvn_mkoOzldwos4ZjCkFDrMkRpC7bAhEzOa4QWhcRFridPGiYBYWiwAZkeEpKQKEo0Myh0mauYH2armraJT97K01TiHc2ulOyPk_yfFankNFbIz0s4wI-yH01QV-c7NbnUhdUHzPkVobQiXprZC-x0PdJ4JnE1aWuDfEVucsCZxgo8fntEzNQ_5fo10Vu9E8JT7iWuA2TvEWgzo6IPEi--rIhtCmdk9_nrWMJvdGIiFXDo">
+</div>
+</div>
+<!-- Form Section -->
+<section class="space-y-stack-md">
+<div class="bg-surface-container-lowest rounded-card p-stack-lg shadow-[0_4px_20px_0_rgba(0,0,0,0.04)]">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block px-1" for="family-name">
+                        Family Name
+                    </label>
+<input class="w-full bg-background border-none rounded-xl px-4 py-4 font-body-lg text-body-lg text-primary placeholder:text-outline-variant focus:ring-2 focus:ring-primary transition-all duration-200 outline-none" dir="auto" id="family-name" placeholder="Ahmed Family" type="text">
+</div>
+</div>
+<!-- Contextual Tip -->
+<div class="flex items-start gap-3 px-4 py-3 bg-secondary-container/10 rounded-xl">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">info</span>
+<p class="font-label-md text-label-md text-on-secondary-container">
+                    This name will be used for your shared budget and goal tracking.
+                </p>
+</div>
+</section>
+</main>
+<!-- Footer Action -->
+<footer class="fixed bottom-0 left-0 w-full bg-background px-container-margin pb-10 pt-4 z-40">
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-headline-md text-headline-md transition-all duration-300 transform active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale" disabled="" id="btn-continue">
+            Continue
+        </button>
+</footer>
+<script>
+        const input = document.getElementById('family-name');
+        const button = document.getElementById('btn-continue');
+
+        input.addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+            if (value.length > 0) {
+                button.disabled = false;
+                button.classList.remove('opacity-30', 'grayscale');
+            } else {
+                button.disabled = true;
+                button.classList.add('opacity-30', 'grayscale');
+            }
+        });
+
+        // Micro-interaction for back button
+        document.querySelector('nav button').addEventListener('click', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                window.history.back();
+            }, 200);
+        });
+
+        // Simple Arabic Support: auto-detect and change text alignment if needed
+        input.addEventListener('keyup', (e) => {
+            const isArabic = /[\u0600-\u06FF]/.test(e.target.value);
+            if (isArabic) {
+                e.target.style.textAlign = 'right';
+            } else {
+                e.target.style.textAlign = 'left';
+            }
+        });
+    </script>
+</body></html>

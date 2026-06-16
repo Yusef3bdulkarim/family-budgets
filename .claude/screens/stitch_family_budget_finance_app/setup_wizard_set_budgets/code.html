@@ -1,0 +1,265 @@
+<!DOCTYPE html><html dir="ltr" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Family Setup Wizard - Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#88d982",
+                    "on-tertiary-container": "#c66ced",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f8f9fa",
+                    "on-primary-container": "#8293b8",
+                    "surface-variant": "#e1e3e4",
+                    "on-primary-fixed-variant": "#364768",
+                    "on-secondary-container": "#217128",
+                    "primary": "#031635",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-fixed": "#081b3a",
+                    "tertiary-fixed": "#f8d8ff",
+                    "on-tertiary-fixed": "#320047",
+                    "surface-container-low": "#f3f4f5",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-bright": "#f8f9fa",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "on-surface": "#191c1d",
+                    "secondary": "#1b6d24",
+                    "outline": "#75777f",
+                    "surface-tint": "#4e5e81",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c5c6cf",
+                    "secondary-fixed": "#a3f69c",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1d",
+                    "on-secondary-fixed-variant": "#005312",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#721199",
+                    "on-surface-variant": "#44474e",
+                    "tertiary-container": "#4a0067",
+                    "on-secondary-fixed": "#002204",
+                    "primary-container": "#1a2b4b",
+                    "tertiary": "#2b003d",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-high": "#e7e8e9",
+                    "surface": "#f8f9fa",
+                    "inverse-surface": "#2e3132",
+                    "tertiary-fixed-dim": "#ebb2ff",
+                    "surface-dim": "#d9dadb",
+                    "surface-container": "#edeeef",
+                    "secondary-container": "#a0f399",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b6c6ef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "gutter": "16px",
+                    "container-margin": "20px",
+                    "section-padding": "32px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-scale:active {
+            transform: scale(0.96);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 20px 0 rgba(0,0,0,0.04);
+        }
+        /* Glassmorphism subtle effect for headers */
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background-color: rgba(248, 249, 250, 0.9);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-header flex items-center justify-between px-container-margin h-16 w-full">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors active-scale">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-label-lg text-label-lg text-outline">Step 3 of 5</span>
+<div class="w-10"></div> <!-- Spacer for centering title -->
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-grow pt-24 pb-32 px-container-margin">
+<!-- Hero Section -->
+<section class="mb-stack-lg">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-stack-sm">
+                Set your family budgets
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Set monthly budgets to help your family stay organized and build better financial habits
+            </p>
+</section>
+<!-- Total Budget Card -->
+<section class="mb-section-padding">
+<div class="bg-primary-container text-white p-6 rounded-[24px] card-shadow relative overflow-hidden active-scale transition-transform">
+<!-- Decorative element -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<p class="font-label-md text-label-md text-on-primary-container/80 uppercase tracking-wider mb-1">
+                            Total Family Monthly Budget
+                        </p>
+<h2 class="font-display-lg text-display-lg text-white">
+                            $0.00
+                        </h2>
+</div>
+<div class="bg-secondary p-2 rounded-full">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Members Section -->
+<section class="mb-stack-lg">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-md text-headline-md text-primary">Family Members</h3>
+<button class="text-secondary font-label-lg text-label-lg flex items-center gap-1 active-scale">
+<span class="material-symbols-outlined text-[18px]" data-icon="settings_suggest">settings_suggest</span>
+                    Apply same to all
+                </button>
+</div>
+<div class="space-y-stack-md">
+<!-- Member 1: Sarah -->
+<div class="bg-white p-5 rounded-[24px] card-shadow flex items-center justify-between border border-outline-variant/30 active-scale transition-all">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Sarah Ahmed profile" class="w-12 h-12 rounded-full object-cover" data-alt="A professional and warm portrait of a Middle Eastern woman in her 30s with a kind smile, set against a soft-focus minimalist interior. The lighting is natural and bright, echoing a premium light-mode aesthetic with clean lines. Her expression conveys trust and organization, fitting for a family co-manager role in a high-end financial app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIVO1yxLGfL8fB_zkz0wsCjL7DklvHwPR8dMmuOKdYu5wbWAzzBGBhVbsCv2o39gj7bWs03KDEy3JRX7hdG-B3XgPPbj5lNc0mC_QNONM12gFTNr8GF1ln4z34X14OMywom-Baucsn-UXL7bh0rjDgBUM8Z2J2CFI7w3cNeRz0uybiJc9f-WQT3a6Bt-hmGTHevE8VKrPg7RIR6w5Uj2MBn05OSz5zX__OdmLtrY9OUR16XrYOJ-1NefnBPnRwSZG1p_hU5yW1pI">
+<div class="absolute -bottom-1 -right-1 bg-primary text-[10px] text-white px-1.5 py-0.5 rounded-full font-bold border-2 border-white">
+                                PRO
+                            </div>
+</div>
+<div>
+<p class="font-headline-md text-[16px] text-primary leading-tight">Sarah Ahmed</p>
+<p class="font-label-md text-on-surface-variant">Co-Manager</p>
+<p class="font-body-md text-outline mt-1 italic">Monthly Budget: Not set</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+</div>
+<!-- Member 2: Omar -->
+<div class="bg-white p-5 rounded-[24px] card-shadow flex items-center justify-between border border-outline-variant/30 active-scale transition-all">
+<div class="flex items-center gap-4">
+<img alt="Omar Ahmed profile" class="w-12 h-12 rounded-full object-cover" data-alt="A candid and friendly portrait of a young adult man with a clean-cut look and thoughtful expression. He is wearing a simple neutral-colored shirt in a bright, modern studio setting with soft shadows. The visual style is crisp and high-resolution, maintaining the warm and trustworthy atmosphere of a family-oriented digital experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2MjHszEoydk1NTDKYulYaqLOZXMn_9RY51rBth3Uc7YmoZpuTpfkk5jHJdm9sb9dOM78ZaR_9VVSxyRLTWBrg-CXe_QVvajzk4I4v3POn1ys1AZ_etzD6dX2AtL0Nv4vlw_0gtC3YQY0L1JPsVLAI2PX8DoQ2Ciy8lv7frjVBwAsDLqcvKQrd8rN0nosp4_pZiqYhTWiFOBsLBcxSXqBld1JzmPXJrfvGIunD61Epe904vQYZSYWu8k28hiNlG-Ir3OquK4Hniog">
+<div>
+<p class="font-headline-md text-[16px] text-primary leading-tight">Omar Ahmed</p>
+<p class="font-label-md text-on-surface-variant">Family Member</p>
+<p class="font-body-md text-outline mt-1 italic">Monthly Budget: Not set</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+</div>
+<!-- Member 3: Jana -->
+<div class="bg-white p-5 rounded-[24px] card-shadow flex items-center justify-between border border-outline-variant/30 active-scale transition-all">
+<div class="flex items-center gap-4">
+<img alt="Jana Ahmed profile" class="w-12 h-12 rounded-full object-cover" data-alt="A bright and cheerful portrait of a teenage girl with a happy, confident smile. The background is a clean, minimalist space with a soft pastel wall, creating a sense of calm and clarity. The lighting is gentle and even, highlighting a modern, premium aesthetic that feels welcoming and family-friendly." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwZ-i9ecWdUNazA1JXrQcrGiDG69Szgrf5GnL3p-ZJoreHjBxV6MOD5DupnDcGh0EmGAxvKLIn9omvy5lKNHOT5820tFcNrHcttUSNkifTNBZt57Z99BTTGqndnQipRBCOYOfaRA0CWWfxaJqNAmiykbomAv9QPvJfM8bTzICuOkxkkrHyb8DA8WLEFxbZm8JsbZ6f_vrK6JdOd-fDkNOqimeflE_9F1oxFa7Kg9DDhuTjPAxC3HUfN0t2x8SOd4hOAVxP1RL5HoQ">
+<div>
+<p class="font-headline-md text-[16px] text-primary leading-tight">Jana Ahmed</p>
+<p class="font-label-md text-on-surface-variant">Family Member</p>
+<p class="font-body-md text-outline mt-1 italic">Monthly Budget: Not set</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Info Tip -->
+<div class="flex items-start gap-3 bg-secondary-container/30 p-4 rounded-xl border border-secondary-container/50">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="info">info</span>
+<p class="font-body-md text-on-secondary-container text-sm">
+                Individual budgets help you track spending habits per person. You can adjust these at any time.
+            </p>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 right-0 p-container-margin bg-white/80 backdrop-blur-md shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] z-50">
+<button class="w-full h-14 bg-outline-variant text-white font-headline-md rounded-full flex items-center justify-center gap-2 cursor-not-allowed opacity-80" disabled="">
+            Continue
+            <span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Home Indicator Safe Area -->
+<div class="h-4"></div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+        // Simple scale effect on interaction
+        document.querySelectorAll('.active-scale').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.style.transform = 'scale(0.96)';
+            });
+            button.addEventListener('touchend', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+
+        // Demo logic: If any card is "clicked", simulate selection (visual only)
+        document.querySelectorAll('.bg-white.active-scale').forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove highlight from others
+                document.querySelectorAll('.bg-white.active-scale').forEach(c => {
+                    c.classList.remove('ring-2', 'ring-secondary', 'border-secondary/20');
+                });
+                // Add to current
+                card.classList.add('ring-2', 'ring-secondary', 'border-secondary/20');
+            });
+        });
+    </script>
+</body></html>

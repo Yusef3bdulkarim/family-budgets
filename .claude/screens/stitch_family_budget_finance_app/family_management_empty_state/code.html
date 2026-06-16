@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Family Management - Our Family Wealth</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f8f9fa",
+                      "outline-variant": "#c5c6cf",
+                      "tertiary-fixed-dim": "#ebb2ff",
+                      "on-primary-fixed-variant": "#364768",
+                      "tertiary": "#2b003d",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed-variant": "#721199",
+                      "on-surface": "#191c1d",
+                      "on-secondary-fixed": "#002204",
+                      "tertiary-container": "#4a0067",
+                      "secondary-fixed-dim": "#88d982",
+                      "secondary": "#1b6d24",
+                      "background": "#f8f9fa",
+                      "on-background": "#191c1d",
+                      "on-tertiary-container": "#c66ced",
+                      "tertiary-fixed": "#f8d8ff",
+                      "primary-container": "#1a2b4b",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-secondary-container": "#217128",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "surface-container": "#edeeef",
+                      "on-primary-fixed": "#081b3a",
+                      "surface-bright": "#f8f9fa",
+                      "on-tertiary-fixed": "#320047",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#a3f69c",
+                      "surface-container-high": "#e7e8e9",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#44474e",
+                      "outline": "#75777f",
+                      "surface-variant": "#e1e3e4",
+                      "surface-tint": "#4e5e81",
+                      "surface-container-low": "#f3f4f5",
+                      "on-primary-container": "#8293b8",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#b6c6ef",
+                      "surface-dim": "#d9dadb",
+                      "primary": "#031635",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "secondary-container": "#a0f399",
+                      "on-secondary-fixed-variant": "#005312",
+                      "primary-fixed": "#d8e2ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-margin": "20px",
+                      "stack-lg": "24px",
+                      "stack-sm": "8px",
+                      "section-padding": "32px",
+                      "gutter": "16px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "display-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-pill {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .kinetic-entrance {
+            animation: slideUpFade 0.8s ease-out forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface flex justify-between items-center px-container-margin py-stack-md w-full max-w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="Profile" class="w-full h-auto" data-alt="A professional high-resolution close-up portrait of a distinguished family patriarch in his late 50s. He has salt-and-pepper hair, wearing a high-quality navy blue cashmere sweater. The lighting is soft and warm, typical of a luxury interior setting, conveying wisdom, trust, and wealth management expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaX0ZVGlfkuoTef0t3H5SzcMTFWz8VOZNzvCMrOwHje8xcik8GPfWxR2bLmepkvKZiEqe0Oep1OZ7x0A9GjNXM4p4dsn0yrRNI6Nu995oOatA3fSpDnjRgBrw-ktvQx18d3RlHueJkqcEo7LS88WEPojXVSVL4mWSLyia7SlABvnWRRHRUdFbQSs2Szuf2gSEst2G_86EbHVxcqV0mi8tr270xfKSgogI68qiYjH2wvttmJIt6Bsbt58EzR2X5Z84dFnfWzCpRalw"/>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary">Our Family Wealth</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 transition-transform duration-200">
+            settings
+        </button>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-container-margin py-section-padding">
+<div class="kinetic-entrance max-w-md w-full text-center flex flex-col items-center">
+<!-- Realistic 3D Illustration Container -->
+<div class="relative w-full aspect-square mb-stack-lg max-w-[320px]">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl transform scale-110"></div>
+<img alt="Happy Family Illustration" class="relative z-10 w-full h-full object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLvcqonvhOnYEs_8wPra21iuhWtSzKPewSIdimJbEBXMZgy7Bc8-EWI3J6un_dclcRgDdVPqWn4okscJB5ROJJIlGzJ2Ap3BMo9e8_QQw-qF2oEA60aIeeOGJQIE7Dh26O7wWF4bEROr8rjqG0YgInwXGpg0h-SZUiQXIMvB1hkKyqHjPIxvSUn-fwxlN1pVf0ch7MT8fZ7K651WfEWG8G1Dz6sJPZuF_G8ti5c_sKS78IG-NCcYaYpGfH4"/>
+</div>
+<!-- Empty State Message -->
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-sm px-4">
+                Your Family Circle
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg px-8">
+                Add your family members to start building your family space
+            </p>
+<!-- CTA Button -->
+<button class="bg-primary text-on-primary px-10 py-4 rounded-full font-headline-md text-headline-md shadow-lg hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95 duration-200 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600">add</span>
+                Add Member
+            </button>
+<!-- Secondary Guidance (Subtle) -->
+<div class="mt-section-padding grid grid-cols-2 gap-gutter w-full">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary mb-2">security</span>
+<p class="font-label-md text-label-md text-on-surface">Secure Sharing</p>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary-container mb-2">analytics</span>
+<p class="font-label-md text-label-md text-on-surface">Shared Goals</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<!-- Determined active tab: Family (as this is Family Management Empty State) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pt-2 pb-8 bg-surface-container-lowest rounded-t-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<!-- Family (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-2 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1">group</span>
+<span class="font-label-md text-label-md font-bold">Family</span>
+</a>
+<!-- Savings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Savings</span>
+</a>
+<!-- Vault -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">lock</span>
+<span class="font-label-md text-label-md">Vault</span>
+</a>
+</nav>
+<!-- Spacer for Bottom Nav -->
+<div class="h-24"></div>
+<script>
+        // Micro-interaction for the CTA button ripple effect
+        document.querySelector('button').addEventListener('mousedown', function(e) {
+            let x = e.clientX - e.target.offsetLeft;
+            let y = e.clientY - e.target.offsetTop;
+            
+            let ripples = document.createElement('span');
+            ripples.style.left = x + 'px';
+            ripples.style.top = y + 'px';
+            // CSS for ripple omitted for brevity, focusing on the core request
+        });
+    </script>
+</body></html>

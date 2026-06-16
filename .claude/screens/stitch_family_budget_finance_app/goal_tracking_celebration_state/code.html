@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Family Budget - Goal Achieved</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#1a2b4b",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#88d982",
+                        "primary": "#031635",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "on-secondary-fixed-variant": "#005312",
+                        "outline-variant": "#c5c6cf",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "tertiary-container": "#4a0067",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "tertiary-fixed": "#f8d8ff",
+                        "outline": "#75777f",
+                        "on-surface-variant": "#44474e",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-primary": "#b6c6ef",
+                        "surface": "#f8f9fa",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#217128",
+                        "tertiary": "#2b003d",
+                        "on-primary-fixed-variant": "#364768",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-tint": "#4e5e81",
+                        "secondary": "#1b6d24",
+                        "on-tertiary-fixed": "#320047",
+                        "on-primary-container": "#8293b8",
+                        "secondary-fixed": "#a3f69c",
+                        "on-tertiary-container": "#c66ced",
+                        "surface-dim": "#d9dadb",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#a0f399",
+                        "on-tertiary-fixed-variant": "#721199",
+                        "on-primary-fixed": "#081b3a",
+                        "on-secondary-fixed": "#002204",
+                        "on-surface": "#191c1d",
+                        "surface-variant": "#e1e3e4",
+                        "background": "#f8f9fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-margin": "20px",
+                        "stack-lg": "24px",
+                        "section-padding": "32px",
+                        "stack-sm": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .soft-layering {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .celebration-bg {
+            background: radial-gradient(circle at top right, rgba(163, 246, 156, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(216, 226, 255, 0.15) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen font-body-md overflow-x-hidden celebration-bg">
+<header class="fixed top-0 w-full z-50 bg-surface flex justify-between items-center px-container-margin h-16 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">Family Budget</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<canvas class="confetti-canvas" id="confetti"></canvas>
+<main class="pt-24 pb-32 px-container-margin max-w-lg mx-auto relative z-20">
+<section class="flex flex-col items-center text-center">
+<div class="relative w-full max-w-xs mb-stack-lg animate-bounce-subtle">
+<div class="absolute inset-0 bg-secondary-container blur-3xl opacity-20 rounded-full"></div>
+<img alt="Family celebrating around a golden piggy bank" class="w-full relative z-10 drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGcf3Rc4SRunh0nZSil8S_xSXn4afN_akNhDYl60vn9zoMKuD37LCQ-MnT8MfvQ9ee7NH-E5eQPt17DuHhUC2aBG6yn6IJe3-5rB9E4JbRTAewk25usZ1Ddie_HquNp_IBQiQBrKqSK0Y72UM6F7TLl7YDBkeo3IN_0Hz4_8huwcnWxboWsQUsBe46zg9sKxR4XeQnmkv_VpxW4xkk_bC_sBy2OAXUWjuBBhETINy5Do5YBTtzKpgPaYp6ielNw64Wq-O6GUvXC7Q"/>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-2">Goal Achieved!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm mb-section-padding">
+                Your family saved $5,000 for the Summer Vacation. Great job together!
+            </p>
+<div class="w-full bg-surface-container-lowest rounded-[24px] p-5 soft-layering mb-section-padding border border-surface-container">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col items-start p-3 bg-surface-container-low rounded-xl">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Target</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold">$5,000</span>
+</div>
+<div class="flex flex-col items-start p-3 bg-surface-container-low rounded-xl">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Duration</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">4 Months</span>
+</div>
+<div class="flex flex-col items-start p-3 bg-surface-container-low rounded-xl col-span-2">
+<div class="flex items-center justify-between w-full">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Contributors</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">4 Family Members</span>
+</div>
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-primary">JD</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-secondary">MD</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold text-tertiary">KD</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+1</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-label-lg text-label-lg hover:opacity-90 active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="add_task">add_task</span>
+                    Set New Goal
+                </button>
+<button class="w-full border-2 border-primary text-primary py-4 rounded-full font-label-lg text-label-lg hover:bg-primary/5 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+                    Share with Family
+                </button>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full z-50 bg-surface rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.04)] h-20 flex justify-around items-center px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+<span class="font-label-md text-label-md">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md text-label-md">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-label-md text-label-md">More</span>
+</a>
+</nav>
+<script>
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.color = ['#031635', '#1b6d24', '#a0f399', '#d8e2ff', '#f8d8ff'][Math.floor(Math.random() * 5)];
+                this.speed = Math.random() * 3 + 2;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 2 - 1;
+            }
+            update() {
+                this.y += this.speed;
+                this.angle += this.spin;
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function init() {
+            resize();
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+        animate();
+    </script>
+</body></html>

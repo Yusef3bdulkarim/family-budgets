@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .sheet-shadow {
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+        }
+        .overlay-blur {
+            backdrop-filter: blur(8px);
+            background-color: rgba(3, 22, 53, 0.15);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ebb2ff",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "surface-bright": "#f8f9fa",
+                      "background": "#f8f9fa",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "on-tertiary-container": "#c66ced",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-tertiary-fixed": "#320047",
+                      "surface-container-low": "#f3f4f5",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#88d982",
+                      "primary": "#031635",
+                      "secondary": "#1b6d24",
+                      "on-surface-variant": "#44474e",
+                      "on-primary-fixed-variant": "#364768",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#d8e2ff",
+                      "on-surface": "#191c1d",
+                      "inverse-primary": "#b6c6ef",
+                      "tertiary-fixed": "#f8d8ff",
+                      "tertiary-container": "#4a0067",
+                      "surface-dim": "#d9dadb",
+                      "primary-container": "#1a2b4b",
+                      "outline-variant": "#c5c6cf",
+                      "on-primary-container": "#8293b8",
+                      "secondary-container": "#a0f399",
+                      "tertiary": "#2b003d",
+                      "on-secondary-fixed-variant": "#005312",
+                      "on-secondary-fixed": "#002204",
+                      "error-container": "#ffdad6",
+                      "on-background": "#191c1d",
+                      "outline": "#75777f",
+                      "surface": "#f8f9fa",
+                      "inverse-surface": "#2e3132",
+                      "on-primary-fixed": "#081b3a",
+                      "surface-variant": "#e1e3e4",
+                      "surface-tint": "#4e5e81",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#721199",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-container": "#edeeef",
+                      "secondary-fixed": "#a3f69c",
+                      "on-secondary-container": "#217128",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "24px",
+                      "stack-md": "16px",
+                      "gutter": "16px",
+                      "section-padding": "32px",
+                      "container-margin": "20px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg-mobile": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-surface antialiased overflow-hidden">
+<!-- Mock Background Content (Dashboard) -->
+<div class="h-screen w-full flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background w-full sticky top-0 flex items-center justify-between px-container-margin py-stack-md z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a friendly-looking man with a warm smile, set against a blurred outdoor background. The lighting is soft and natural, emphasizing a trustworthy and approachable persona. The image follows a high-end minimalist aesthetic with clean lines and a professional, modern feel suitable for a family finance application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWsQhCUouhVdG3VkI5CAH8IjisvJ84gI-Z00dVXsKzukR1rfn68VwoOA9iLopwPxyxob8c2ZRivBF2SS0OC7eTPtzrzNkZ6jz9aJn3HSlDk-8i8da1qBBQ3ovBFgR5USM4ZSSn4Ewd5Clqou-M2cx_j8EPtpG2O9Ilo8S0GIg7qmRZNP-5aVvuPlYzAwii1Jbeb3eoevFS9hIOPZFIq9SSjni_Uz-QEjruGxjxWGnlWFslybWQwaWojJ6kvTAmxJHKxDuuR41rCx8"/>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary">Family Finance</h1>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+</button>
+</header>
+<main class="flex-1 px-container-margin pt-stack-lg space-y-stack-lg overflow-y-auto pb-32">
+<!-- Balance Card -->
+<div class="bg-surface-container-lowest rounded-[24px] p-[20px] sheet-shadow">
+<p class="font-label-lg text-on-surface-variant mb-stack-sm">Current Balance</p>
+<h2 class="font-display-lg text-primary">$4,250.00</h2>
+<div class="mt-stack-md flex gap-stack-sm">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span> 12% vs last month
+                    </span>
+</div>
+</div>
+<!-- Family Members Section -->
+<section class="space-y-stack-md">
+<h3 class="font-headline-md text-primary">Family Budgets</h3>
+<div class="grid grid-cols-1 gap-stack-md">
+<!-- Omar's Card -->
+<div class="bg-surface-container-lowest rounded-[24px] p-[20px] sheet-shadow border border-outline-variant/10">
+<div class="flex justify-between items-center mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-container flex items-center justify-center text-white font-bold">O</div>
+<div>
+<h4 class="font-headline-md text-primary leading-tight">Omar</h4>
+<p class="font-label-md text-on-surface-variant">Student Account</p>
+</div>
+</div>
+<span class="font-headline-md text-primary">$350.00</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full mb-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 65%;"></div>
+</div>
+<p class="font-label-md text-on-surface-variant">Used $227.50 of $350.00</p>
+</div>
+<!-- Other Member -->
+<div class="bg-surface-container-lowest rounded-[24px] p-[20px] opacity-60 border border-outline-variant/10">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-tertiary-container flex items-center justify-center text-white font-bold">L</div>
+<div>
+<h4 class="font-headline-md text-primary leading-tight">Layla</h4>
+<p class="font-label-md text-on-surface-variant">Personal</p>
+</div>
+</div>
+<span class="font-headline-md text-primary">$1,200.00</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Modal / Bottom Sheet Overlay -->
+<div class="fixed inset-0 z-[60] flex items-end sm:items-center sm:justify-center" id="budget-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 overlay-blur transition-opacity duration-300" onclick="closeModal()"></div>
+<!-- Bottom Sheet / Modal Content -->
+<div class="relative w-full sm:max-w-md bg-surface-container-lowest rounded-t-[32px] sm:rounded-[24px] p-container-margin animate-slide-up sheet-shadow">
+<!-- Handle (Mobile only) -->
+<div class="sm:hidden flex justify-center mb-6">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Header -->
+<div class="mb-stack-lg text-center">
+<h2 class="font-headline-lg text-primary">Increase Budget</h2>
+<p class="font-body-md text-on-surface-variant mt-1">For Omar</p>
+</div>
+<!-- Form -->
+<div class="space-y-stack-lg">
+<!-- Additional Amount -->
+<div class="space-y-stack-sm">
+<label class="block font-label-lg text-primary" for="amount">Additional Amount</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="text-on-surface-variant font-headline-md">$</span>
+</div>
+<input class="w-full pl-10 pr-4 py-4 bg-surface-container-low border border-outline-variant/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all text-headline-md text-primary font-semibold" id="amount" name="amount" placeholder="0.00" step="0.01" type="number"/>
+</div>
+</div>
+<!-- Reason -->
+<div class="space-y-stack-sm">
+<label class="block font-label-lg text-primary" for="reason">Reason</label>
+<textarea class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md text-on-surface placeholder:text-outline" id="reason" name="reason" placeholder="e.g. Extra school expenses" rows="3"></textarea>
+</div>
+<!-- Quick Suggestions -->
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full bg-surface-container border border-outline-variant/20 text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors">School Fees</button>
+<button class="px-4 py-2 rounded-full bg-surface-container border border-outline-variant/20 text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors">Textbooks</button>
+<button class="px-4 py-2 rounded-full bg-surface-container border border-outline-variant/20 text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors">Field Trip</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-stack-lg flex flex-col gap-3">
+<button class="w-full py-4 bg-primary text-on-primary rounded-full font-label-lg text-label-lg hover:opacity-90 active:scale-95 transition-all shadow-md" onclick="saveAdjustment()">
+                    Save Adjustment
+                </button>
+<button class="w-full py-4 bg-transparent text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-surface-container transition-colors" onclick="closeModal()">
+                    Cancel
+                </button>
+</div>
+<!-- Safe Area Bottom Spacer (iOS) -->
+<div class="h-6 sm:hidden"></div>
+</div>
+</div>
+<!-- BottomNavBar (Hidden when modal is active but logically part of the shell) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-surface-container-lowest dark:bg-inverse-surface shadow-lg rounded-t-xl z-40 transition-transform duration-300 translate-y-full md:translate-y-0" id="global-nav">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="reorder">reorder</span>
+<span class="font-label-lg text-label-lg">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-lg text-label-lg">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="target">target</span>
+<span class="font-label-lg text-label-lg">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-label-lg text-label-lg">More</span>
+</a>
+</nav>
+<script>
+        function closeModal() {
+            const modal = document.getElementById('budget-modal');
+            const sheet = modal.querySelector('.animate-slide-up');
+            const backdrop = modal.querySelector('.overlay-blur');
+            
+            sheet.style.transform = 'translateY(100%)';
+            sheet.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            backdrop.style.opacity = '0';
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('global-nav').classList.remove('translate-y-full');
+            }, 300);
+        }
+
+        function saveAdjustment() {
+            const amount = document.getElementById('amount').value;
+            if(!amount) {
+                alert('Please enter an amount');
+                return;
+            }
+            // Logic for saving would go here
+            console.log('Saving adjustment:', amount);
+            closeModal();
+        }
+
+        // Initially hide navigation if modal is "active" as per logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Keep nav hidden initially because modal is primary focus of this generation
+            document.getElementById('global-nav').classList.add('translate-y-full');
+        });
+    </script>
+</body></html>

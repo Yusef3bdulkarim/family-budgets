@@ -1,0 +1,287 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#75777f",
+                      "on-primary-fixed-variant": "#364768",
+                      "primary-container": "#1a2b4b",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#f8d8ff",
+                      "surface": "#f8f9fa",
+                      "surface-tint": "#4e5e81",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9fa",
+                      "secondary-fixed": "#a3f69c",
+                      "on-tertiary-fixed": "#320047",
+                      "on-primary-container": "#8293b8",
+                      "surface-container-high": "#e7e8e9",
+                      "outline-variant": "#c5c6cf",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#d8e2ff",
+                      "on-primary-fixed": "#081b3a",
+                      "tertiary-container": "#4a0067",
+                      "on-surface-variant": "#44474e",
+                      "on-surface": "#191c1d",
+                      "on-tertiary-fixed-variant": "#721199",
+                      "on-secondary-container": "#217128",
+                      "secondary-fixed-dim": "#88d982",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e1e3e4",
+                      "secondary": "#1b6d24",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "surface-dim": "#d9dadb",
+                      "primary": "#031635",
+                      "tertiary": "#2b003d",
+                      "background": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary-fixed": "#002204",
+                      "tertiary-fixed-dim": "#ebb2ff",
+                      "on-secondary-fixed-variant": "#005312",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "on-tertiary-container": "#c66ced",
+                      "on-background": "#191c1d",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#b6c6ef",
+                      "secondary-container": "#a0f399",
+                      "surface-container": "#edeeef"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "section-padding": "32px",
+                      "container-margin": "20px",
+                      "stack-lg": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .bottom-sheet-overlay { transition: opacity 0.3s ease; }
+        .bottom-sheet-container { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            bottom: -24px;
+            width: 2px;
+            background-color: #e1e3e4;
+            transform: translateX(-50%);
+        }
+        .timeline-item:last-child .timeline-dot::after { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Background Content (Pending Requests Screen) -->
+<header class="w-full top-0 sticky bg-surface shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex justify-between items-center px-container-margin py-stack-md w-full z-10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">menu</span>
+<h1 class="font-headline-md text-headline-md-mobile text-primary">Requests</h1>
+</div>
+<span class="material-symbols-outlined text-primary">notifications</span>
+</header>
+<main class="px-container-margin py-stack-lg space-y-stack-lg">
+<div class="bg-surface-container-lowest p-stack-lg rounded-[24px] shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Omar Avatar" class="w-full h-full object-cover" data-alt="A high-quality 3D rendered avatar profile picture of a young boy with short dark hair and a friendly expression. He is wearing a minimalist navy blue hoodie. The background is a soft, out-of-focus interior with warm, premium lighting and a clean, minimalist aesthetic characteristic of a high-end family finance application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOFPDOLcB8wcM0sQqwHsPesa_Pi_ay6jGxoczY7tm-GucRQd3VyrUX2eR0vJlRUFUOnt7ExdT3GyxS7zMMzO3vTV0pkyxOxvETze6ipo7bxtaL3haFI9766FOB71h6msFKEpw2zRx6w3qmeX4KhAAzVDDTE9SDXvbdglwLan01rN0MlBRdbPI-ZiYpyXTYGZVQD1CwyX9JeVSNCGqv7sNpGbkKZuQBv4d_XLIkN9BXOGkmv2TYaVcHTGA13f_7QUAntYfLx_AtRmM">
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">Omar</p>
+<p class="font-label-md text-on-surface-variant">Gaming • $25.00</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="bg-surface-container-lowest p-stack-lg rounded-[24px] shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] border border-outline-variant/10 flex items-center justify-between opacity-60">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Sarah Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUSdnsp6O9-7eQ2ZkEcgBU9x2nX4kYRBU4S5K0oSC8R8EB0rK6ZEmNS5uuD2Q83S2ewd7S8KQPyW8NwtB2s48zwuvcT8QdH9-adu1MUau9zmXAOEJnuYdR8VrnskYOzqA7oO2nYR5OCX05Ye_hYRPleB9DTUP7SWDDMGaFOVvoTK-MulIcoDJPktSMeSLgwGtxn4FtTayZ8mlyFapSzVKkMRwr8LJtVApuF3loTaXpU3GBFJUV4KLzBRvWYFPG8f_6IS0JnUVTvnQ">
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">Sarah</p>
+<p class="font-label-md text-on-surface-variant">Education • $40.00</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</main>
+<!-- Bottom Sheet Overlay -->
+<div class="fixed inset-0 bg-black/40 z-[60] bottom-sheet-overlay backdrop-blur-[2px]" id="overlay"></div>
+<!-- Request Detail Bottom Sheet -->
+<div class="fixed bottom-0 left-0 right-0 z-[70] bg-surface-container-lowest rounded-t-[32px] bottom-sheet-container transform translate-y-0 max-h-[795px] overflow-hidden flex flex-col" id="sheet">
+<!-- Handle -->
+<div class="w-full flex justify-center py-4">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Scrollable Content -->
+<div class="overflow-y-auto flex-1 px-container-margin pb-32">
+<!-- Header Section -->
+<div class="flex flex-col items-center text-center mt-stack-md space-y-2">
+<div class="w-20 h-20 rounded-full border-4 border-surface-container-high p-1">
+<img alt="Omar Large" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNb7YXlDlqQ3SQY9hr0HxTPXRaHYlTQM9mm6qQjsUKYJEkJS_D6gNft-OGWJrSD99rQ3yRyuS5vL5hW_eStkrbdue5nqW4WBJ3iN6aeILS3idnCXigs5RGkJ5gcdIJpdaXZFEuzct2q4kS-p7mR-Uh7t6PmW1Ts0poZEpWjguA95xBnR9TZ92riIXKfnELfyy39F2Zd6V0d_oyL1jpx18W5Lg2d4XMOJV0dwO2OEdhyzmuOrorHGCCFabTJk5k3rIwrojt_JzTQ8">
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Request from Omar</h2>
+<div class="text-[40px] font-bold text-primary tracking-tight">$25.00</div>
+<div class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-md">Gaming</div>
+</div>
+<!-- Details Card -->
+<div class="mt-section-padding space-y-stack-lg">
+<div class="flex flex-col space-y-stack-sm">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider">Reason</span>
+<p class="font-body-lg text-primary leading-relaxed">'New skin for Fortnite'</p>
+</div>
+<div class="flex flex-col space-y-stack-sm">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider">Date</span>
+<p class="font-body-lg text-primary">Oct 24, 2023</p>
+</div>
+<!-- Timeline Section -->
+<div class="flex flex-col space-y-stack-lg pt-stack-md">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider">Activity</span>
+<div class="space-y-0">
+<!-- Requested Item -->
+<div class="flex items-start gap-4 timeline-item relative pb-10">
+<div class="timeline-dot w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col">
+<p class="font-body-md text-primary font-semibold">Requested by Omar</p>
+<p class="font-label-md text-on-surface-variant">Today, 2:45 PM</p>
+</div>
+</div>
+<!-- Pending Item -->
+<div class="flex items-start gap-4 timeline-item relative">
+<div class="timeline-dot w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center z-10 border-2 border-surface-container-lowest">
+<div class="w-2 h-2 bg-outline rounded-full animate-pulse"></div>
+</div>
+<div class="flex flex-col">
+<p class="font-body-md text-primary font-semibold">Pending Approval</p>
+<p class="font-label-md text-on-surface-variant">Waiting for Parent action</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Actions -->
+<div class="absolute bottom-0 left-0 right-0 p-container-margin bg-surface-container-lowest/80 backdrop-blur-md flex flex-col gap-3 pb-safe border-t border-outline-variant/10">
+<button class="w-full h-14 bg-primary text-white rounded-2xl font-body-lg font-bold shadow-lg active:scale-95 transition-transform" onclick="closeSheet()">
+                Approve
+            </button>
+<button class="w-full h-14 border border-outline text-primary rounded-2xl font-body-lg font-semibold active:scale-95 transition-transform" onclick="closeSheet()">
+                Reject
+            </button>
+</div>
+</div>
+<!-- Navigation (Suppressed based on Task Focus - Bottom Sheet Context) -->
+<!-- However, showing what the background would look like for visual completeness -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 pb-safe bg-surface-container-lowest shadow-[0_-4px_20px_0_rgba(0,0,0,0.04)] blur-[2px] pointer-events-none">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+<span class="font-label-md">Requests</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Family</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-label-md">Goals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-md">More</span>
+</div>
+</nav>
+<script>
+        const sheet = document.getElementById('sheet');
+        const overlay = document.getElementById('overlay');
+
+        function closeSheet() {
+            sheet.style.transform = 'translateY(100%)';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        overlay.addEventListener('click', closeSheet);
+
+        // Simple touch-to-drag-down logic simulation
+        let startY = 0;
+        let currentY = 0;
+
+        sheet.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+
+        sheet.addEventListener('touchmove', (e) => {
+            currentY = e.touches[0].clientY;
+            let deltaY = currentY - startY;
+            if (deltaY > 0) {
+                sheet.style.transform = `translateY(${deltaY}px)`;
+            }
+        });
+
+        sheet.addEventListener('touchend', (e) => {
+            let deltaY = currentY - startY;
+            if (deltaY > 150) {
+                closeSheet();
+            } else {
+                sheet.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+</body></html>

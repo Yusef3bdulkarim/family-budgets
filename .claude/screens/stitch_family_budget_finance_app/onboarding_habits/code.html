@@ -1,0 +1,220 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Family Budget - Build Habits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#721199",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container": "#edeeef",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#081b3a",
+                    "primary-container": "#1a2b4b",
+                    "on-surface": "#191c1d",
+                    "tertiary-container": "#4a0067",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#002204",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "on-background": "#191c1d",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-fixed-variant": "#364768",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface": "#f8f9fa",
+                    "background": "#f8f9fa",
+                    "tertiary-fixed": "#f8d8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#217128",
+                    "on-tertiary-container": "#c66ced",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#320047",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#44474e",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#75777f",
+                    "inverse-surface": "#2e3132",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#4e5e81",
+                    "secondary": "#1b6d24",
+                    "surface-dim": "#d9dadb",
+                    "tertiary-fixed-dim": "#ebb2ff",
+                    "secondary-fixed-dim": "#88d982",
+                    "secondary-fixed": "#a3f69c",
+                    "on-secondary-fixed-variant": "#005312",
+                    "surface-bright": "#f8f9fa",
+                    "inverse-primary": "#b6c6ef",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary-container": "#8293b8",
+                    "outline-variant": "#c5c6cf",
+                    "tertiary": "#2b003d",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-container": "#a0f399",
+                    "primary": "#031635"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-padding": "32px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "container-margin": "20px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .progress-fill {
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center">
+<!-- Top Status Bar Simulation -->
+<div class="w-full h-11 flex justify-between items-center px-6 safe-top z-50">
+<div class="font-bold text-sm">9:41</div>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-sm">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-sm">wifi</span>
+<span class="material-symbols-outlined text-sm rotate-90">battery_full</span>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-[393px] px-container-margin flex flex-col items-center justify-between py-stack-lg relative">
+<!-- Illustration Section -->
+<div class="w-full aspect-[4/5] relative flex items-center justify-center mt-stack-md">
+<!-- Background Decorative Elements -->
+<div class="absolute w-[120%] h-[120%] -z-10 opacity-30 pointer-events-none">
+<div class="absolute top-10 left-10 w-32 h-32 bg-secondary-fixed rounded-full blur-[60px]"></div>
+<div class="absolute bottom-10 right-10 w-40 h-40 bg-tertiary-fixed rounded-full blur-[70px]"></div>
+</div>
+<!-- Central Composition -->
+<div class="relative w-full h-full flex flex-col items-center justify-center">
+<!-- 3D Family Illustration Component -->
+<div class="w-full h-full rounded-[24px] overflow-hidden bg-surface-container-lowest shadow-lg relative group">
+<img alt="Happy 3D family celebrating financial success" class="w-full h-full object-cover" data-alt="A premium 3D rendered illustration of a diverse, joyful family of three—a mother, father, and young child—cheering with arms raised in a minimalist white-walled living room. In the foreground, a sleek digital floating progress bar glows neon green, showing 100% completion for a 'Family Vacation' goal. A stylized translucent purple piggy bank icon floats nearby, catching the soft, studio-quality light. The scene is bright, high-key, and evokes a sense of modern financial freedom and collective achievement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB5y6cyTlpxho8rsurGvb7WVM2RhNT-uTEkNoE9ARdflSqqS9ICp7aZQ4bhQ-Mx4X-VIsYTd4tRU8P_8OBLNJwsdftJEj75KsQhFhR9jypNBQTxqStibLN3jN3Xmf_dbUhnR1MnsCKuoKcXnNRlSouds7zEewl9bXWjtL8AQqoSDw43AlYDRUoIw1ic_g9oss3zlh6VgF0KRyihSyyIUec_bW8i6XwmS7sDoifWHzkhQNgU5-i_TULTfw-RK-blMmJFtOz4dI4Ymk">
+<!-- Floating Progress Overlay -->
+<div class="absolute bottom-6 left-6 right-6 glass-card p-stack-md rounded-xl shadow-md border border-white/40 animate-float">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant" style="font-variation-settings: 'FILL' 1;">savings</span>
+<span class="font-label-lg text-on-surface">Family Vacation</span>
+</div>
+<span class="text-secondary font-bold font-label-lg">100%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-fill" id="progressBar" style="width: 0%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Typography Section -->
+<div class="text-center w-full mt-stack-lg">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight px-4">
+                Build better financial habits together
+            </h1>
+<p class="font-body-md text-on-surface-variant mt-stack-sm max-w-[280px] mx-auto">
+                Track shared goals, manage budgets, and secure your family's future in one calm space.
+            </p>
+</div>
+<!-- Onboarding Navigation & CTA -->
+<div class="w-full flex flex-col items-center mt-stack-lg pb-stack-lg">
+<!-- Pagination Dots -->
+<div class="flex items-center gap-2 mb-stack-lg">
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+</div>
+<!-- CTA Button -->
+<button class="w-full bg-secondary text-on-secondary font-headline-md text-headline-md py-4 rounded-full shadow-lg active:scale-95 transition-transform duration-200 flex items-center justify-center gap-2 group">
+                Get Started
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Bottom Safe Area Spacer -->
+<div class="safe-bottom"></div>
+<script>
+        // Trigger progress bar animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const bar = document.getElementById('progressBar');
+                if (bar) bar.style.width = '100%';
+            }, 500);
+        });
+
+        // Simple button interaction feedback
+        const btn = document.querySelector('button');
+        btn.addEventListener('touchstart', () => {
+            btn.classList.add('opacity-90');
+        });
+        btn.addEventListener('touchend', () => {
+            btn.classList.remove('opacity-90');
+        });
+    </script>
+</body></html>

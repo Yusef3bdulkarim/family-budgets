@@ -1,0 +1,216 @@
+<!DOCTYPE html><html dir="ltr" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#a3f69c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "outline": "#75777f",
+                        "surface": "#f8f9fa",
+                        "tertiary": "#2b003d",
+                        "surface-container": "#edeeef",
+                        "on-surface-variant": "#44474e",
+                        "primary-container": "#1a2b4b",
+                        "secondary": "#1b6d24",
+                        "tertiary-container": "#4a0067",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-secondary-container": "#217128",
+                        "inverse-on-surface": "#f0f1f2",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-container": "#a0f399",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "primary": "#031635",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "on-tertiary-fixed": "#320047",
+                        "on-secondary-fixed-variant": "#005312",
+                        "on-primary-fixed": "#081b3a",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "outline-variant": "#c5c6cf",
+                        "on-tertiary-container": "#c66ced",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002204",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-dim": "#d9dadb",
+                        "inverse-primary": "#b6c6ef",
+                        "on-tertiary-fixed-variant": "#721199",
+                        "surface-tint": "#4e5e81",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#f8d8ff",
+                        "on-background": "#191c1d",
+                        "secondary-fixed-dim": "#88d982",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8293b8",
+                        "background": "#f8f9fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "section-padding": "32px",
+                        "stack-md": "16px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "label-lg": ["13px", {"lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Soft physical layer for cards */
+        .elevation-1 {
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-area-top {
+            padding-top: env(safe-area-inset-top);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- Top App Bar (Suppressed Shell for focused task) -->
+<header class="w-full top-0 sticky bg-background flex items-center justify-between px-container-margin py-stack-md z-40 safe-area-top">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-start text-primary transition-opacity hover:opacity-80">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="font-headline-md text-headline-md text-primary">Family Budget</div>
+<div class="w-10"></div> <!-- Spacer for center alignment -->
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[393px] flex-1 flex flex-col px-container-margin pb-section-padding">
+<!-- Illustration Section -->
+<div class="w-full flex justify-center py-section-padding">
+<div class="relative w-full max-w-[280px] aspect-square rounded-[24px] overflow-hidden">
+<img alt="Supportive family members looking at a digital device together" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY3fzxJQhtWWHCDh0e-xQZHxHwjXKnCY-b36N0zH8BxEMBx5lIxlQzt_W_7GhKstqsgRrHC7mqhFLkWLyhFHN7P2jhr7Y-4nS5j5KNafBxjY02Eg0O6V70WbwQVZkAxRPC7UbsvFA9ufURQn5CnZCA6wryWcv5kOhTjwBQbRfQCPCM8oVtCTbWVwR3h-O64CSUqEEDYWJV9CAkb9eF1XobQdqzH93EVvfJDUyqnTM5uFbz4MCdetQExiSokDhUBcwCppQWw3oMJH8">
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-stack-md text-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">
+                Forgot your password?
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[320px] mx-auto leading-relaxed">
+                No problem. Enter your email and we'll send you a reset link.
+            </p>
+</div>
+<!-- Form Section -->
+<form class="mt-section-padding space-y-stack-lg" onsubmit="return false;">
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block ml-1" for="email">
+                    Email Address
+                </label>
+<div class="bg-surface-container-lowest rounded-[24px] elevation-1 p-1">
+<input class="w-full bg-transparent border-none focus:ring-0 px-5 py-4 font-body-md text-body-md placeholder:text-outline-variant text-on-surface rounded-[20px] transition-all" id="email" name="email" placeholder="e.g. mom@family.com" required="" type="email">
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-label-lg text-label-lg tracking-wider uppercase transition-transform active:scale-95 shadow-lg flex items-center justify-center space-x-2" type="submit">
+<span>Send Reset Link</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</form>
+<!-- Secondary Navigation -->
+<div class="mt-stack-lg text-center">
+<button class="font-label-md text-label-md text-on-primary-fixed-variant hover:opacity-70 transition-opacity">
+                Back to Login
+            </button>
+</div>
+<!-- Empty space to push content up on smaller screens -->
+<div class="flex-1"></div>
+<!-- Footer / Safety Zone -->
+<footer class="mt-auto safe-area-bottom pt-stack-md text-center">
+<p class="font-label-md text-label-md text-outline-variant">
+                Need help? <span class="text-secondary font-semibold">Contact Support</span>
+</p>
+</footer>
+</main>
+<!-- Navigation suppressed per rules for Transactional/Focused screens (Forgot Password) -->
+<script>
+        // Subtle micro-interaction for the input field
+        const emailInput = document.getElementById('email');
+        const inputContainer = emailInput?.parentElement;
+
+        emailInput?.addEventListener('focus', () => {
+            inputContainer.classList.remove('elevation-1');
+            inputContainer.classList.add('ring-2', 'ring-primary', 'shadow-xl');
+        });
+
+        emailInput?.addEventListener('blur', () => {
+            inputContainer.classList.add('elevation-1');
+            inputContainer.classList.remove('ring-2', 'ring-primary', 'shadow-xl');
+        });
+
+        // Form Submission visual feedback
+        const form = document.querySelector('form');
+        form?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">progress_activity</span><span>Sending...</span>`;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span><span>Sent!</span>`;
+                btn.classList.replace('bg-primary', 'bg-secondary');
+                
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalContent;
+                    btn.classList.replace('bg-secondary', 'bg-primary');
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body></html>
