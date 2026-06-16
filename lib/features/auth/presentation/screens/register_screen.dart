@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/validators.dart';
 import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 
@@ -86,12 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             hintText: 'First name',
                             prefixIcon: Icon(Icons.person_outlined),
                           ),
-                          validator: (value) {
-                            if (value == null || value.trim().isEmpty) {
-                              return 'Required';
-                            }
-                            return null;
-                          },
+                          validator: (value) => Validators.required(value, 'First name'),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -103,12 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             labelText: 'Last Name',
                             hintText: 'Last name',
                           ),
-                          validator: (value) {
-                            if (value == null || value.trim().isEmpty) {
-                              return 'Required';
-                            }
-                            return null;
-                          },
+                          validator: (value) => Validators.required(value, 'Last name'),
                         ),
                       ),
                     ],
@@ -123,16 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'Enter your email',
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Email is required';
-                      }
-                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                          .hasMatch(value.trim())) {
-                        return 'Enter a valid email';
-                      }
-                      return null;
-                    },
+                    validator: Validators.email,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -154,15 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password is required';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
+                    validator: Validators.password,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -186,12 +160,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                     ),
-                    validator: (value) {
-                      if (value != _passwordController.text) {
-                        return 'Passwords do not match';
-                      }
-                      return null;
-                    },
+                    validator: (value) =>
+                        Validators.confirmPassword(value, _passwordController.text),
                   ),
                   const SizedBox(height: 32),
                   BlocBuilder<AuthCubit, AuthState>(
