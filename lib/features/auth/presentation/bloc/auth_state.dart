@@ -30,6 +30,10 @@ class AuthEmailVerificationSent extends AuthState {
   const AuthEmailVerificationSent();
 }
 
+class AuthEmailVerified extends AuthState {
+  const AuthEmailVerified();
+}
+
 class AuthLoggedOut extends AuthState {
   const AuthLoggedOut();
 }

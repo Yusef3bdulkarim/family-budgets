@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/usecases/apple_sign_in_usecase.dart';
+import '../../domain/usecases/check_email_verification_usecase.dart';
 import '../../domain/usecases/forgot_password_usecase.dart';
 import '../../domain/usecases/google_sign_in_usecase.dart';
 import '../../domain/usecases/login_usecase.dart';
@@ -17,16 +18,26 @@ class AuthCubit extends Cubit<AuthState> {
   final ForgotPasswordUseCase _forgotPasswordUseCase;
   final LogoutUseCase _logoutUseCase;
   final SendEmailVerificationUseCase _sendEmailVerificationUseCase;
+  final CheckEmailVerificationUseCase _checkEmailVerificationUseCase;
 
-  AuthCubit(
-    this._loginUseCase,
-    this._registerUseCase,
-    this._googleSignInUseCase,
-    this._appleSignInUseCase,
-    this._forgotPasswordUseCase,
-    this._logoutUseCase,
-    this._sendEmailVerificationUseCase,
-  ) : super(const AuthInitial());
+  AuthCubit({
+    required LoginUseCase loginUseCase,
+    required RegisterUseCase registerUseCase,
+    required GoogleSignInUseCase googleSignInUseCase,
+    required AppleSignInUseCase appleSignInUseCase,
+    required ForgotPasswordUseCase forgotPasswordUseCase,
+    required LogoutUseCase logoutUseCase,
+    required SendEmailVerificationUseCase sendEmailVerificationUseCase,
+    required CheckEmailVerificationUseCase checkEmailVerificationUseCase,
+  })  : _loginUseCase = loginUseCase,
+        _registerUseCase = registerUseCase,
+        _googleSignInUseCase = googleSignInUseCase,
+        _appleSignInUseCase = appleSignInUseCase,
+        _forgotPasswordUseCase = forgotPasswordUseCase,
+        _logoutUseCase = logoutUseCase,
+        _sendEmailVerificationUseCase = sendEmailVerificationUseCase,
+        _checkEmailVerificationUseCase = checkEmailVerificationUseCase,
+        super(const AuthInitial());
 
   Future<void> login({required String email, required String password}) async {
     emit(const AuthLoading());
@@ -88,6 +99,20 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await _sendEmailVerificationUseCase();
     result.when(
       success: (_) => emit(const AuthEmailVerificationSent()),
+      failure: (error) => emit(AuthError(error.message)),
+    );
+  }
+
+  Future<void> checkEmailVerification() async {
+    final result = await _checkEmailVerificationUseCase();
+    result.when(
+      success: (isVerified) {
+        if (isVerified) {
+          emit(const AuthEmailVerified());
+        } else if (state is! AuthEmailVerificationSent) {
+          emit(const AuthEmailVerificationSent());
+        }
+      },
       failure: (error) => emit(AuthError(error.message)),
     );
   }

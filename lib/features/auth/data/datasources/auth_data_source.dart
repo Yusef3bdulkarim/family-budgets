@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
+import '../../../../core/constants/firestore_collections.dart';
 import '../models/user_model.dart';
 
 class AuthDataSource {
@@ -32,7 +33,7 @@ class AuthDataSource {
       emailVerified: user.emailVerified,
     );
 
-    await _firestore.collection('users').doc(user.uid).set(model.toFirestore());
+    await _firestore.collection(FirestoreCollections.users).doc(user.uid).set(model.toFirestore());
     await user.sendEmailVerification();
 
     return model;
@@ -52,10 +53,7 @@ class AuthDataSource {
   Future<UserModel> signInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
-      throw FirebaseAuthException(
-        code: 'sign-in-cancelled',
-        message: 'Google sign-in was cancelled',
-      );
+      throw Exception('Google sign-in was cancelled');
     }
 
     final googleAuth = await googleUser.authentication;
@@ -67,7 +65,7 @@ class AuthDataSource {
     final userCredential = await _auth.signInWithCredential(credential);
     final user = userCredential.user!;
 
-    final doc = await _firestore.collection('users').doc(user.uid).get();
+    final doc = await _firestore.collection(FirestoreCollections.users).doc(user.uid).get();
     if (!doc.exists) {
       final names = user.displayName?.split(' ') ?? [''];
       final model = UserModel(
@@ -77,7 +75,7 @@ class AuthDataSource {
         lastName: names.length > 1 ? names.sublist(1).join(' ') : '',
         emailVerified: user.emailVerified,
       );
-      await _firestore.collection('users').doc(user.uid).set(model.toFirestore());
+      await _firestore.collection(FirestoreCollections.users).doc(user.uid).set(model.toFirestore());
       return model;
     }
 
@@ -100,7 +98,7 @@ class AuthDataSource {
     final userCredential = await _auth.signInWithCredential(oauthCredential);
     final user = userCredential.user!;
 
-    final doc = await _firestore.collection('users').doc(user.uid).get();
+    final doc = await _firestore.collection(FirestoreCollections.users).doc(user.uid).get();
     if (!doc.exists) {
       final model = UserModel(
         uid: user.uid,
@@ -109,7 +107,7 @@ class AuthDataSource {
         lastName: appleCredential.familyName ?? '',
         emailVerified: user.emailVerified,
       );
-      await _firestore.collection('users').doc(user.uid).set(model.toFirestore());
+      await _firestore.collection(FirestoreCollections.users).doc(user.uid).set(model.toFirestore());
       return model;
     }
 
@@ -122,6 +120,13 @@ class AuthDataSource {
 
   Future<void> sendEmailVerification() async {
     await _auth.currentUser?.sendEmailVerification();
+  }
+
+  Future<bool> checkEmailVerification() async {
+    final user = _auth.currentUser;
+    if (user == null) return false;
+    await user.reload();
+    return _auth.currentUser!.emailVerified;
   }
 
   Future<void> logout() async {
@@ -138,7 +143,7 @@ class AuthDataSource {
   }
 
   Future<UserModel> _userFromFirestore(User user) async {
-    final doc = await _firestore.collection('users').doc(user.uid).get();
+    final doc = await _firestore.collection(FirestoreCollections.users).doc(user.uid).get();
     if (!doc.exists) {
       return UserModel(
         uid: user.uid,

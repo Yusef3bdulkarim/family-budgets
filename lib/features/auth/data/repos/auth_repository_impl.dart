@@ -82,6 +82,16 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<ApiResult<bool>> checkEmailVerification() async {
+    try {
+      final isVerified = await _dataSource.checkEmailVerification();
+      return ApiResult.success(isVerified);
+    } catch (e) {
+      return ApiResult.failure(FirebaseErrorHandler.handle(e));
+    }
+  }
+
+  @override
   Future<ApiResult<void>> logout() async {
     try {
       await _dataSource.logout();
