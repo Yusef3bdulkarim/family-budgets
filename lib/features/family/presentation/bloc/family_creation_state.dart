@@ -30,6 +30,10 @@ class FamilyAlreadyExists extends FamilyCreationState {
   const FamilyAlreadyExists(this.family);
 }
 
+class HasPendingInvitations extends FamilyCreationState {
+  const HasPendingInvitations();
+}
+
 class FamilyCreationError extends FamilyCreationState {
   final String message;
   const FamilyCreationError(this.message);
