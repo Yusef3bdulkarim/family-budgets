@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +14,12 @@ import '../../features/family/presentation/screens/add_members_screen.dart';
 import '../../features/family/presentation/screens/family_creation_screen.dart';
 import '../../features/invitation/presentation/bloc/pending_invitations_cubit.dart';
 import '../../features/invitation/presentation/screens/pending_invitations_screen.dart';
+import '../../features/nav_shell/presentation/screens/family_screen.dart';
+import '../../features/nav_shell/presentation/screens/goals_screen.dart';
+import '../../features/nav_shell/presentation/screens/home_screen.dart';
+import '../../features/nav_shell/presentation/screens/more_screen.dart';
+import '../../features/nav_shell/presentation/screens/nav_shell_screen.dart';
+import '../../features/nav_shell/presentation/screens/requests_screen.dart';
 
 abstract final class AppRoutes {
   static const login = '/login';
@@ -25,10 +30,14 @@ abstract final class AppRoutes {
   static const addMembers = '/add-members';
   static const pendingInvitations = '/pending-invitations';
   static const home = '/home';
+  static const requests = '/requests';
+  static const family = '/family';
+  static const goals = '/goals';
+  static const more = '/more';
 }
 
 final appRouter = GoRouter(
-  initialLocation: AppRoutes.familyCreation,
+  initialLocation: AppRoutes.home,
   redirect: (context, state) {
     final user = getIt<FirebaseAuth>().currentUser;
     final isLoggedIn = user != null;
@@ -103,11 +112,52 @@ final appRouter = GoRouter(
         child: const PendingInvitationsScreen(),
       ),
     ),
-    GoRoute(
-      path: AppRoutes.home,
-      builder: (context, state) => const Scaffold(
-        body: Center(child: Text('Home — Coming Soon')),
-      ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return NavShellScreen(navigationShell: navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.home,
+              builder: (context, state) => const HomeScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.requests,
+              builder: (context, state) => const RequestsScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.family,
+              builder: (context, state) => const FamilyScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.goals,
+              builder: (context, state) => const GoalsScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.more,
+              builder: (context, state) => const MoreScreen(),
+            ),
+          ],
+        ),
+      ],
     ),
   ],
 );
