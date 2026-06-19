@@ -24,6 +24,12 @@ import '../../features/family/domain/usecases/create_family_usecase.dart';
 import '../../features/family/domain/usecases/get_user_family_usecase.dart';
 import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
+import '../../features/invitation/data/datasources/invitation_data_source.dart';
+import '../../features/invitation/data/repos/invitation_repository_impl.dart';
+import '../../features/invitation/domain/repos/invitation_repository.dart';
+import '../../features/invitation/domain/usecases/check_pending_invitations_usecase.dart';
+import '../../features/invitation/domain/usecases/respond_to_invitation_usecase.dart';
+import '../../features/invitation/presentation/bloc/pending_invitations_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -99,14 +105,42 @@ Future<void> setupDependencies() async {
     () => AddMemberUseCase(getIt<FamilyRepository>()),
   );
 
+  // Invitation — DataSource
+  getIt.registerLazySingleton(
+    () => InvitationDataSource(
+        getIt<FirebaseFirestore>(), getIt<FirebaseAuth>()),
+  );
+
+  // Invitation — Repository
+  getIt.registerLazySingleton<InvitationRepository>(
+    () => InvitationRepositoryImpl(getIt<InvitationDataSource>()),
+  );
+
+  // Invitation — Use Cases
+  getIt.registerLazySingleton(
+    () => CheckPendingInvitationsUseCase(getIt<InvitationRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => RespondToInvitationUseCase(getIt<InvitationRepository>()),
+  );
+
   // Family — Cubits
   getIt.registerFactory(
     () => FamilyCreationCubit(
       getIt<CreateFamilyUseCase>(),
       getIt<GetUserFamilyUseCase>(),
+      getIt<CheckPendingInvitationsUseCase>(),
     ),
   );
   getIt.registerFactory(
     () => AddMembersCubit(getIt<AddMemberUseCase>()),
+  );
+
+  // Invitation — Cubit
+  getIt.registerFactory(
+    () => PendingInvitationsCubit(
+      getIt<CheckPendingInvitationsUseCase>(),
+      getIt<RespondToInvitationUseCase>(),
+    ),
   );
 }
