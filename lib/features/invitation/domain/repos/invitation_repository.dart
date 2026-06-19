@@ -5,4 +5,5 @@ abstract class InvitationRepository {
   Future<ApiResult<List<InvitationEntity>>> getPendingInvitations();
   Future<ApiResult<void>> acceptInvitation(InvitationEntity invitation);
   Future<ApiResult<void>> rejectInvitation(InvitationEntity invitation);
+  Future<ApiResult<bool>> claimPendingMembershipByEmail();
 }

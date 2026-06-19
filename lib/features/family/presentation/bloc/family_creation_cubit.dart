@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/error/api_result.dart';
 import '../../../invitation/domain/usecases/check_pending_invitations_usecase.dart';
+import '../../../invitation/domain/usecases/claim_pending_membership_usecase.dart';
 import '../../domain/usecases/create_family_usecase.dart';
 import '../../domain/usecases/get_user_family_usecase.dart';
 import 'family_creation_state.dart';
@@ -10,11 +11,13 @@ class FamilyCreationCubit extends Cubit<FamilyCreationState> {
   final CreateFamilyUseCase _createFamilyUseCase;
   final GetUserFamilyUseCase _getUserFamilyUseCase;
   final CheckPendingInvitationsUseCase _checkPendingInvitationsUseCase;
+  final ClaimPendingMembershipUseCase _claimPendingMembershipUseCase;
 
   FamilyCreationCubit(
     this._createFamilyUseCase,
     this._getUserFamilyUseCase,
     this._checkPendingInvitationsUseCase,
+    this._claimPendingMembershipUseCase,
   ) : super(const FamilyCreationInitial());
 
   Future<void> checkFamilyStatus() async {
@@ -33,6 +36,7 @@ class FamilyCreationCubit extends Cubit<FamilyCreationState> {
   }
 
   Future<void> _checkForInvitations() async {
+    // Check for existing-user invitations (recipientId-based, Feature 2.3)
     final invResult = await _checkPendingInvitationsUseCase();
     switch (invResult) {
       case ApiSuccess(data: final invitations):
@@ -43,6 +47,19 @@ class FamilyCreationCubit extends Cubit<FamilyCreationState> {
       case ApiFailure():
         break;
     }
+
+    // Check for new-user invitations (email-based, Feature 2.4)
+    final claimResult = await _claimPendingMembershipUseCase();
+    switch (claimResult) {
+      case ApiSuccess(data: final claimed):
+        if (claimed) {
+          emit(const FamilyAutoJoined());
+          return;
+        }
+      case ApiFailure():
+        break;
+    }
+
     emit(const FamilyCreationReady());
   }
 

@@ -90,4 +90,77 @@ class InvitationDataSource {
 
     await batch.commit();
   }
+
+  /// Returns true if a pending email invitation was found and auto-claimed.
+  Future<bool> claimPendingMembershipByEmail() async {
+    final user = _auth.currentUser;
+    if (user == null || user.email == null) return false;
+
+    final normalizedEmail = user.email!.toLowerCase();
+
+    final query = await _firestore
+        .collection(FirestoreCollections.invitations)
+        .where('recipientEmail', isEqualTo: normalizedEmail)
+        .where('status', isEqualTo: 'pending')
+        .orderBy('createdAt', descending: false)
+        .limit(1)
+        .get();
+
+    if (query.docs.isEmpty) return false;
+
+    final inviteDoc = query.docs.first;
+    final data = inviteDoc.data();
+    final pendingMemberId = data['pendingMemberId'] as String? ?? '';
+
+    final batch = _firestore.batch();
+
+    if (pendingMemberId.isNotEmpty) {
+      final pendingRef = _firestore
+          .collection(FirestoreCollections.familyMembers)
+          .doc(pendingMemberId);
+      batch.delete(pendingRef);
+    }
+
+    final memberRef = _firestore
+        .collection(FirestoreCollections.familyMembers)
+        .doc(user.uid);
+    batch.set(memberRef, {
+      'familyId': data['familyId'],
+      'userId': user.uid,
+      'displayName': data['displayName'],
+      'email': normalizedEmail,
+      'role': data['role'],
+      'status': 'active',
+      'monthlyBudget': data['monthlyBudget'],
+      'joinedAt': FieldValue.serverTimestamp(),
+    });
+
+    batch.update(inviteDoc.reference, {
+      'status': 'accepted',
+      'recipientId': user.uid,
+    });
+
+    await batch.commit();
+
+    final others = await _firestore
+        .collection(FirestoreCollections.invitations)
+        .where('recipientEmail', isEqualTo: normalizedEmail)
+        .where('status', isEqualTo: 'pending')
+        .get();
+
+    if (others.docs.isNotEmpty) {
+      final cleanupBatch = _firestore.batch();
+      for (final doc in others.docs) {
+        // recipientId must be set so the Firestore update rule (email-match branch)
+        // sees affectedKeys = ['status', 'recipientId'] and recipientId == user.uid.
+        cleanupBatch.update(doc.reference, {
+          'status': 'auto_rejected',
+          'recipientId': user.uid,
+        });
+      }
+      await cleanupBatch.commit();
+    }
+
+    return true;
+  }
 }
