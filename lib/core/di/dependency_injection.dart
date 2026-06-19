@@ -16,6 +16,12 @@ import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/send_email_verification_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_cubit.dart';
+import '../../features/family/data/datasources/family_data_source.dart';
+import '../../features/family/data/repos/family_repository_impl.dart';
+import '../../features/family/domain/repos/family_repository.dart';
+import '../../features/family/domain/usecases/create_family_usecase.dart';
+import '../../features/family/domain/usecases/get_user_family_usecase.dart';
+import '../../features/family/presentation/bloc/family_creation_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -67,6 +73,32 @@ Future<void> setupDependencies() async {
       logoutUseCase: getIt<LogoutUseCase>(),
       sendEmailVerificationUseCase: getIt<SendEmailVerificationUseCase>(),
       checkEmailVerificationUseCase: getIt<CheckEmailVerificationUseCase>(),
+    ),
+  );
+
+  // Family — DataSource
+  getIt.registerLazySingleton(
+    () => FamilyDataSource(getIt<FirebaseFirestore>(), getIt<FirebaseAuth>()),
+  );
+
+  // Family — Repository
+  getIt.registerLazySingleton<FamilyRepository>(
+    () => FamilyRepositoryImpl(getIt<FamilyDataSource>()),
+  );
+
+  // Family — Use Cases
+  getIt.registerLazySingleton(
+    () => CreateFamilyUseCase(getIt<FamilyRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => GetUserFamilyUseCase(getIt<FamilyRepository>()),
+  );
+
+  // Family — Cubit
+  getIt.registerFactory(
+    () => FamilyCreationCubit(
+      getIt<CreateFamilyUseCase>(),
+      getIt<GetUserFamilyUseCase>(),
     ),
   );
 }
