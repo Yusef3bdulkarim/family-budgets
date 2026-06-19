@@ -52,10 +52,7 @@ class AuthDataSource {
   Future<UserModel> signInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
-      throw FirebaseAuthException(
-        code: 'sign-in-cancelled',
-        message: 'Google sign-in was cancelled',
-      );
+      throw Exception('Google sign-in was cancelled');
     }
 
     final googleAuth = await googleUser.authentication;
