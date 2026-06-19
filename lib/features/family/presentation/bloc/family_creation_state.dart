@@ -34,6 +34,10 @@ class HasPendingInvitations extends FamilyCreationState {
   const HasPendingInvitations();
 }
 
+class FamilyAutoJoined extends FamilyCreationState {
+  const FamilyAutoJoined();
+}
+
 class FamilyCreationError extends FamilyCreationState {
   final String message;
   const FamilyCreationError(this.message);

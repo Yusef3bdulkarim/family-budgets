@@ -78,12 +78,21 @@ service cloud.firestore {
       allow read: if isAuth() && (
         resource.data.senderId == request.auth.uid
         || resource.data.recipientId == request.auth.uid
+        || resource.data.recipientEmail == request.auth.token.email
       );
       allow create: if isAuth()
         && request.resource.data.senderId == request.auth.uid;
-      allow update: if isAuth()
-        && resource.data.recipientId == request.auth.uid
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']);
+      // Existing-user accept/reject: recipientId already set, only status changes.
+      // New-user auto-accept: recipientEmail matches, recipientId was null,
+      //   only status + recipientId change, and new recipientId must be caller's uid.
+      allow update: if isAuth() && (
+        (resource.data.recipientId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']))
+        || (resource.data.recipientEmail == request.auth.token.email
+          && resource.data.recipientId == null
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'recipientId'])
+          && request.resource.data.recipientId == request.auth.uid)
+      );
       allow delete: if false;
     }
   }
