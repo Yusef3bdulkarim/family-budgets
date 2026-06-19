@@ -13,7 +13,7 @@ class FirebaseErrorHandler {
     if (error is FirebaseException) {
       return ServerFailure(message: error.message ?? 'Firebase error');
     }
-    return ServerFailure(message: error.toString());
+    return const ServerFailure(message: 'Something went wrong. Please try again.');
   }
 
   static String _mapAuthCode(String code) {
