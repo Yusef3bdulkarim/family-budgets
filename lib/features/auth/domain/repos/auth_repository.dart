@@ -22,6 +22,8 @@ abstract class AuthRepository {
 
   Future<ApiResult<void>> sendEmailVerification();
 
+  Future<ApiResult<bool>> checkEmailVerification();
+
   Future<ApiResult<void>> logout();
 
   Future<ApiResult<UserEntity?>> getCurrentUser();
