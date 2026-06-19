@@ -20,3 +20,7 @@ class NetworkFailure extends Failure {
 class CacheFailure extends Failure {
   const CacheFailure({super.message = 'Cache error'});
 }
+
+class FamilyFailure extends Failure {
+  const FamilyFailure({required super.message, super.code});
+}

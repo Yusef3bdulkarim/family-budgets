@@ -11,10 +11,66 @@ service cloud.firestore {
       return isAuth() && request.auth.uid == userId;
     }
 
+    function familyData(familyId) {
+      return get(/databases/$(database)/documents/families/$(familyId)).data;
+    }
+
+    function memberDoc() {
+      return get(/databases/$(database)/documents/family_members/$(request.auth.uid));
+    }
+
+    function isFamilyManager(familyId) {
+      return isAuth() && familyData(familyId).managerId == request.auth.uid;
+    }
+
+    function isMemberOf(familyId) {
+      return isAuth()
+        && exists(/databases/$(database)/documents/family_members/$(request.auth.uid))
+        && memberDoc().data.familyId == familyId
+        && memberDoc().data.status == 'active';
+    }
+
     // ── Users ──
     match /users/{userId} {
       allow get, write: if isOwner(userId);
       allow list: if isAuth() && request.query.limit <= 1;
+    }
+
+    // ── Families ──
+    match /families/{familyId} {
+      allow read: if isMemberOf(familyId);
+      allow create: if isAuth()
+        && request.resource.data.managerId == request.auth.uid;
+      allow update: if isFamilyManager(familyId);
+      allow delete: if false;
+    }
+
+    // ── Family Members ──
+    match /family_members/{memberId} {
+      allow read: if isAuth() && (
+        memberId == request.auth.uid
+        || resource.data.userId == request.auth.uid
+        || isMemberOf(resource.data.familyId)
+      );
+      allow create: if isAuth() && (
+        (memberId == request.auth.uid && request.resource.data.role != 'manager')
+        || isFamilyManager(request.resource.data.familyId)
+      );
+      allow update: if isAuth() && (
+        isFamilyManager(resource.data.familyId)
+        || memberId == request.auth.uid
+      );
+      allow delete: if isAuth() && (
+        isFamilyManager(resource.data.familyId)
+        || (resource.data.status == 'pending' && resource.data.email == request.auth.token.email)
+      );
+    }
+
+    // ── Categories ──
+    match /categories/{categoryId} {
+      allow read: if isAuth() && isMemberOf(resource.data.familyId);
+      allow create: if isAuth() && isMemberOf(request.resource.data.familyId);
+      allow update, delete: if isFamilyManager(resource.data.familyId);
     }
   }
 }
