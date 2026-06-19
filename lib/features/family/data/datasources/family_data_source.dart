@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../core/constants/firestore_collections.dart';
+import '../../../../core/enums/family_member_role.dart';
+import '../../domain/entities/add_member_result.dart';
 import '../models/family_member_model.dart';
 import '../models/family_model.dart';
 
@@ -107,5 +109,49 @@ class FamilyDataSource {
     if (!familyDoc.exists) return null;
 
     return FamilyModel.fromFirestore(familyDoc.data()!);
+  }
+
+  Future<AddMemberResult> addMember({
+    required String familyId,
+    required String displayName,
+    required String email,
+    required FamilyMemberRole role,
+    double? monthlyBudget,
+  }) async {
+    final user = _auth.currentUser;
+    if (user == null) throw Exception('User not authenticated');
+
+    final normalizedEmail = email.trim().toLowerCase();
+
+    final memberRef =
+        _firestore.collection(FirestoreCollections.familyMembers).doc();
+
+    await memberRef.set({
+      'id': memberRef.id,
+      'familyId': familyId,
+      'userId': null,
+      'displayName': displayName.trim(),
+      'email': normalizedEmail,
+      'role': role.toJson(),
+      'status': 'pending',
+      'monthlyBudget': monthlyBudget,
+      'invitedAt': FieldValue.serverTimestamp(),
+      'joinedAt': null,
+    });
+
+    final member = FamilyMemberModel(
+      id: memberRef.id,
+      familyId: familyId,
+      displayName: displayName.trim(),
+      email: normalizedEmail,
+      role: role,
+      status: 'pending',
+      monthlyBudget: monthlyBudget,
+    );
+
+    return AddMemberResult(
+      member: member,
+      inviteStatus: InviteStatus.userNotFound,
+    );
   }
 }

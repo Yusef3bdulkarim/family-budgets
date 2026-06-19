@@ -9,7 +9,9 @@ import '../../features/auth/presentation/screens/forgot_password_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/verify_email_screen.dart';
+import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
+import '../../features/family/presentation/screens/add_members_screen.dart';
 import '../../features/family/presentation/screens/family_creation_screen.dart';
 
 abstract final class AppRoutes {
@@ -18,6 +20,7 @@ abstract final class AppRoutes {
   static const forgotPassword = '/forgot-password';
   static const verifyEmail = '/verify-email';
   static const familyCreation = '/family-creation';
+  static const addMembers = '/add-members';
   static const home = '/home';
 }
 
@@ -77,6 +80,17 @@ final appRouter = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (_) => getIt<FamilyCreationCubit>(),
         child: const FamilyCreationScreen(),
+      ),
+    ),
+    GoRoute(
+      path: AppRoutes.addMembers,
+      redirect: (context, state) {
+        if (state.extra is! String) return AppRoutes.familyCreation;
+        return null;
+      },
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<AddMembersCubit>(),
+        child: AddMembersScreen(familyId: state.extra! as String),
       ),
     ),
     GoRoute(
