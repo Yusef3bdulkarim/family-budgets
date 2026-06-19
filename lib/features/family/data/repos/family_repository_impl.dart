@@ -52,4 +52,24 @@ class FamilyRepositoryImpl implements FamilyRepository {
       return ApiResult.failure(FirebaseErrorHandler.handle(e));
     }
   }
+
+  @override
+  Future<ApiResult<void>> updateFamilySettings({
+    required String familyId,
+    required int budgetStartDay,
+    required String currency,
+    double? autoApprovalLimit,
+  }) async {
+    try {
+      await _dataSource.updateFamilySettings(
+        familyId: familyId,
+        budgetStartDay: budgetStartDay,
+        currency: currency,
+        autoApprovalLimit: autoApprovalLimit,
+      );
+      return ApiResult.success(null);
+    } catch (e) {
+      return ApiResult.failure(FirebaseErrorHandler.handle(e));
+    }
+  }
 }

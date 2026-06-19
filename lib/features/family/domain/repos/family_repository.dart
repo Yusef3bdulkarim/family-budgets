@@ -13,4 +13,10 @@ abstract class FamilyRepository {
     required FamilyMemberRole role,
     double? monthlyBudget,
   });
+  Future<ApiResult<void>> updateFamilySettings({
+    required String familyId,
+    required int budgetStartDay,
+    required String currency,
+    double? autoApprovalLimit,
+  });
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../core/constants/family_constants.dart';
 import '../../../../core/constants/firestore_collections.dart';
 import '../../../../core/enums/family_member_role.dart';
 import '../../domain/entities/add_member_result.dart';
@@ -48,6 +49,9 @@ class FamilyDataSource {
       'name': name.trim(),
       'managerId': user.uid,
       'createdAt': FieldValue.serverTimestamp(),
+      'budgetStartDay': FamilyConstants.minBudgetStartDay,
+      'currency': FamilyConstants.defaultCurrency,
+      'autoApprovalLimit': null,
     });
 
     await memberRef.set({
@@ -81,6 +85,9 @@ class FamilyDataSource {
       name: name.trim(),
       managerId: user.uid,
       createdAt: DateTime.now(),
+      budgetStartDay: FamilyConstants.minBudgetStartDay,
+      currency: FamilyConstants.defaultCurrency,
+      autoApprovalLimit: null,
     );
   }
 
@@ -240,6 +247,22 @@ class FamilyDataSource {
       inviteStatus:
           userExists ? InviteStatus.sent : InviteStatus.userNotFound,
     );
+  }
+
+  Future<void> updateFamilySettings({
+    required String familyId,
+    required int budgetStartDay,
+    required String currency,
+    double? autoApprovalLimit,
+  }) async {
+    await _firestore
+        .collection(FirestoreCollections.families)
+        .doc(familyId)
+        .update({
+      'budgetStartDay': budgetStartDay,
+      'currency': currency,
+      'autoApprovalLimit': autoApprovalLimit,
+    });
   }
 }
 
