@@ -13,6 +13,8 @@ import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
 import '../../features/family/presentation/screens/add_members_screen.dart';
 import '../../features/family/presentation/screens/family_creation_screen.dart';
+import '../../features/invitation/presentation/bloc/pending_invitations_cubit.dart';
+import '../../features/invitation/presentation/screens/pending_invitations_screen.dart';
 
 abstract final class AppRoutes {
   static const login = '/login';
@@ -21,6 +23,7 @@ abstract final class AppRoutes {
   static const verifyEmail = '/verify-email';
   static const familyCreation = '/family-creation';
   static const addMembers = '/add-members';
+  static const pendingInvitations = '/pending-invitations';
   static const home = '/home';
 }
 
@@ -91,6 +94,13 @@ final appRouter = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (_) => getIt<AddMembersCubit>(),
         child: AddMembersScreen(familyId: state.extra! as String),
+      ),
+    ),
+    GoRoute(
+      path: AppRoutes.pendingInvitations,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<PendingInvitationsCubit>(),
+        child: const PendingInvitationsScreen(),
       ),
     ),
     GoRoute(

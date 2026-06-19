@@ -123,10 +123,76 @@ class FamilyDataSource {
 
     final normalizedEmail = email.trim().toLowerCase();
 
+    final userQuery = await _firestore
+        .collection(FirestoreCollections.users)
+        .where('email', isEqualTo: normalizedEmail)
+        .limit(1)
+        .get();
+
+    final userExists = userQuery.docs.isNotEmpty;
+    String? recipientUserId;
+
+    if (userExists) {
+      recipientUserId = userQuery.docs.first.id;
+
+      final existingMember = await _firestore
+          .collection(FirestoreCollections.familyMembers)
+          .doc(recipientUserId)
+          .get();
+
+      if (existingMember.exists &&
+          existingMember.data()?['status'] == 'active') {
+        throw AlreadyInFamilyException();
+      }
+
+      final existingInvite = await _firestore
+          .collection(FirestoreCollections.invitations)
+          .where('senderId', isEqualTo: user.uid)
+          .where('recipientId', isEqualTo: recipientUserId)
+          .where('familyId', isEqualTo: familyId)
+          .where('status', isEqualTo: 'pending')
+          .limit(1)
+          .get();
+
+      if (existingInvite.docs.isNotEmpty) {
+        throw AlreadyInvitedException();
+      }
+    } else {
+      final existingEmailInvite = await _firestore
+          .collection(FirestoreCollections.invitations)
+          .where('senderId', isEqualTo: user.uid)
+          .where('recipientEmail', isEqualTo: normalizedEmail)
+          .where('familyId', isEqualTo: familyId)
+          .where('status', isEqualTo: 'pending')
+          .limit(1)
+          .get();
+
+      if (existingEmailInvite.docs.isNotEmpty) {
+        throw AlreadyInvitedException();
+      }
+    }
+
+    final familyDoc = await _firestore
+        .collection(FirestoreCollections.families)
+        .doc(familyId)
+        .get();
+    final familyName = familyDoc.data()?['name'] as String? ?? '';
+
+    final senderDoc = await _firestore
+        .collection(FirestoreCollections.users)
+        .doc(user.uid)
+        .get();
+    final senderData = senderDoc.data() ?? {};
+    final senderName =
+        '${senderData['firstName'] ?? ''} ${senderData['lastName'] ?? ''}'
+            .trim();
+
+    final batch = _firestore.batch();
+
     final memberRef =
         _firestore.collection(FirestoreCollections.familyMembers).doc();
 
-    await memberRef.set({
+    batch.set(memberRef, {
       'id': memberRef.id,
       'familyId': familyId,
       'userId': null,
@@ -138,6 +204,26 @@ class FamilyDataSource {
       'invitedAt': FieldValue.serverTimestamp(),
       'joinedAt': null,
     });
+
+    final inviteRef =
+        _firestore.collection(FirestoreCollections.invitations).doc();
+
+    batch.set(inviteRef, {
+      'familyId': familyId,
+      'familyName': familyName,
+      'senderId': user.uid,
+      'senderName': senderName.isEmpty ? user.email : senderName,
+      'recipientId': recipientUserId,
+      'recipientEmail': normalizedEmail,
+      'pendingMemberId': memberRef.id,
+      'displayName': displayName.trim(),
+      'role': role.toJson(),
+      'monthlyBudget': monthlyBudget,
+      'status': 'pending',
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+
+    await batch.commit();
 
     final member = FamilyMemberModel(
       id: memberRef.id,
@@ -151,7 +237,12 @@ class FamilyDataSource {
 
     return AddMemberResult(
       member: member,
-      inviteStatus: InviteStatus.userNotFound,
+      inviteStatus:
+          userExists ? InviteStatus.sent : InviteStatus.userNotFound,
     );
   }
 }
+
+class AlreadyInFamilyException implements Exception {}
+
+class AlreadyInvitedException implements Exception {}
