@@ -10,8 +10,10 @@ import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/verify_email_screen.dart';
 import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
+import '../../features/family/presentation/bloc/family_settings_cubit.dart';
 import '../../features/family/presentation/screens/add_members_screen.dart';
 import '../../features/family/presentation/screens/family_creation_screen.dart';
+import '../../features/family/presentation/screens/family_settings_screen.dart';
 import '../../features/invitation/presentation/bloc/pending_invitations_cubit.dart';
 import '../../features/invitation/presentation/screens/pending_invitations_screen.dart';
 import '../../features/nav_shell/presentation/screens/family_screen.dart';
@@ -34,6 +36,7 @@ abstract final class AppRoutes {
   static const family = '/family';
   static const goals = '/goals';
   static const more = '/more';
+  static const familySettings = '/family-settings';
 }
 
 final appRouter = GoRouter(
@@ -110,6 +113,13 @@ final appRouter = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (_) => getIt<PendingInvitationsCubit>(),
         child: const PendingInvitationsScreen(),
+      ),
+    ),
+    GoRoute(
+      path: AppRoutes.familySettings,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<FamilySettingsCubit>(),
+        child: const FamilySettingsScreen(),
       ),
     ),
     StatefulShellRoute.indexedStack(

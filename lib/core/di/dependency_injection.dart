@@ -22,8 +22,10 @@ import '../../features/family/domain/repos/family_repository.dart';
 import '../../features/family/domain/usecases/add_member_usecase.dart';
 import '../../features/family/domain/usecases/create_family_usecase.dart';
 import '../../features/family/domain/usecases/get_user_family_usecase.dart';
+import '../../features/family/domain/usecases/update_family_settings_usecase.dart';
 import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
+import '../../features/family/presentation/bloc/family_settings_cubit.dart';
 import '../../features/invitation/data/datasources/invitation_data_source.dart';
 import '../../features/invitation/data/repos/invitation_repository_impl.dart';
 import '../../features/invitation/domain/repos/invitation_repository.dart';
@@ -105,6 +107,9 @@ Future<void> setupDependencies() async {
   getIt.registerLazySingleton(
     () => AddMemberUseCase(getIt<FamilyRepository>()),
   );
+  getIt.registerLazySingleton(
+    () => UpdateFamilySettingsUseCase(getIt<FamilyRepository>()),
+  );
 
   // Invitation — DataSource
   getIt.registerLazySingleton(
@@ -139,6 +144,13 @@ Future<void> setupDependencies() async {
   );
   getIt.registerFactory(
     () => AddMembersCubit(getIt<AddMemberUseCase>()),
+  );
+  getIt.registerFactory(
+    () => FamilySettingsCubit(
+      getIt<GetUserFamilyUseCase>(),
+      getIt<UpdateFamilySettingsUseCase>(),
+      getIt<GetCurrentUserUseCase>(),
+    ),
   );
 
   // Invitation — Cubit
