@@ -27,10 +27,8 @@ class _FamilyCreationScreenState extends State<FamilyCreationScreen> {
     return Scaffold(
       body: BlocConsumer<FamilyCreationCubit, FamilyCreationState>(
         listener: (context, state) {
-          if (state is FamilyAlreadyExists || state is FamilyAutoJoined) {
+          if (state is FamilyAlreadyExists) {
             context.go(AppRoutes.home);
-          } else if (state is HasPendingInvitations) {
-            context.go(AppRoutes.pendingInvitations);
           } else if (state is FamilyCreationSuccess) {
             context.go(AppRoutes.addMembers, extra: state.family.id);
           } else if (state is FamilyCreationError) {
@@ -46,9 +44,7 @@ class _FamilyCreationScreenState extends State<FamilyCreationScreen> {
           FamilyCreationInitial() ||
           FamilyCreationChecking() ||
           FamilyAlreadyExists() ||
-          FamilyAutoJoined() ||
-          FamilyCreationSuccess() ||
-          HasPendingInvitations() =>
+          FamilyCreationSuccess() =>
             const Center(child: CircularProgressIndicator()),
           FamilyCreationReady() ||
           FamilyCreationLoading() ||

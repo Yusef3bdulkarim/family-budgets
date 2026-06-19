@@ -19,8 +19,10 @@ import '../../features/auth/presentation/bloc/auth_cubit.dart';
 import '../../features/family/data/datasources/family_data_source.dart';
 import '../../features/family/data/repos/family_repository_impl.dart';
 import '../../features/family/domain/repos/family_repository.dart';
+import '../../features/family/domain/usecases/add_member_usecase.dart';
 import '../../features/family/domain/usecases/create_family_usecase.dart';
 import '../../features/family/domain/usecases/get_user_family_usecase.dart';
+import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -93,12 +95,18 @@ Future<void> setupDependencies() async {
   getIt.registerLazySingleton(
     () => GetUserFamilyUseCase(getIt<FamilyRepository>()),
   );
+  getIt.registerLazySingleton(
+    () => AddMemberUseCase(getIt<FamilyRepository>()),
+  );
 
-  // Family — Cubit
+  // Family — Cubits
   getIt.registerFactory(
     () => FamilyCreationCubit(
       getIt<CreateFamilyUseCase>(),
       getIt<GetUserFamilyUseCase>(),
     ),
+  );
+  getIt.registerFactory(
+    () => AddMembersCubit(getIt<AddMemberUseCase>()),
   );
 }
