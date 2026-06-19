@@ -28,6 +28,7 @@ import '../../features/invitation/data/datasources/invitation_data_source.dart';
 import '../../features/invitation/data/repos/invitation_repository_impl.dart';
 import '../../features/invitation/domain/repos/invitation_repository.dart';
 import '../../features/invitation/domain/usecases/check_pending_invitations_usecase.dart';
+import '../../features/invitation/domain/usecases/claim_pending_membership_usecase.dart';
 import '../../features/invitation/domain/usecases/respond_to_invitation_usecase.dart';
 import '../../features/invitation/presentation/bloc/pending_invitations_cubit.dart';
 
@@ -123,6 +124,9 @@ Future<void> setupDependencies() async {
   getIt.registerLazySingleton(
     () => RespondToInvitationUseCase(getIt<InvitationRepository>()),
   );
+  getIt.registerLazySingleton(
+    () => ClaimPendingMembershipUseCase(getIt<InvitationRepository>()),
+  );
 
   // Family — Cubits
   getIt.registerFactory(
@@ -130,6 +134,7 @@ Future<void> setupDependencies() async {
       getIt<CreateFamilyUseCase>(),
       getIt<GetUserFamilyUseCase>(),
       getIt<CheckPendingInvitationsUseCase>(),
+      getIt<ClaimPendingMembershipUseCase>(),
     ),
   );
   getIt.registerFactory(
