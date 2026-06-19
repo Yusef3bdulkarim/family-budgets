@@ -7,6 +7,7 @@ import '../../features/auth/data/datasources/auth_data_source.dart';
 import '../../features/auth/data/repos/auth_repository_impl.dart';
 import '../../features/auth/domain/repos/auth_repository.dart';
 import '../../features/auth/domain/usecases/apple_sign_in_usecase.dart';
+import '../../features/auth/domain/usecases/check_email_verification_usecase.dart';
 import '../../features/auth/domain/usecases/forgot_password_usecase.dart';
 import '../../features/auth/domain/usecases/get_current_user_usecase.dart';
 import '../../features/auth/domain/usecases/google_sign_in_usecase.dart';
@@ -52,17 +53,20 @@ Future<void> setupDependencies() async {
       () => GetCurrentUserUseCase(getIt<AuthRepository>()));
   getIt.registerLazySingleton(
       () => SendEmailVerificationUseCase(getIt<AuthRepository>()));
+  getIt.registerLazySingleton(
+      () => CheckEmailVerificationUseCase(getIt<AuthRepository>()));
 
   // Auth — Cubit
   getIt.registerFactory(
     () => AuthCubit(
-      getIt<LoginUseCase>(),
-      getIt<RegisterUseCase>(),
-      getIt<GoogleSignInUseCase>(),
-      getIt<AppleSignInUseCase>(),
-      getIt<ForgotPasswordUseCase>(),
-      getIt<LogoutUseCase>(),
-      getIt<SendEmailVerificationUseCase>(),
+      loginUseCase: getIt<LoginUseCase>(),
+      registerUseCase: getIt<RegisterUseCase>(),
+      googleSignInUseCase: getIt<GoogleSignInUseCase>(),
+      appleSignInUseCase: getIt<AppleSignInUseCase>(),
+      forgotPasswordUseCase: getIt<ForgotPasswordUseCase>(),
+      logoutUseCase: getIt<LogoutUseCase>(),
+      sendEmailVerificationUseCase: getIt<SendEmailVerificationUseCase>(),
+      checkEmailVerificationUseCase: getIt<CheckEmailVerificationUseCase>(),
     ),
   );
 }
