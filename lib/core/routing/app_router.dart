@@ -8,6 +8,8 @@ import '../../features/auth/presentation/screens/forgot_password_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/verify_email_screen.dart';
+import '../../features/categories/presentation/bloc/categories_cubit.dart';
+import '../../features/categories/presentation/screens/categories_screen.dart';
 import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
 import '../../features/family/presentation/bloc/family_settings_cubit.dart';
@@ -37,6 +39,7 @@ abstract final class AppRoutes {
   static const goals = '/goals';
   static const more = '/more';
   static const familySettings = '/family-settings';
+  static const categories = '/categories';
 }
 
 final appRouter = GoRouter(
@@ -120,6 +123,13 @@ final appRouter = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (_) => getIt<FamilySettingsCubit>(),
         child: const FamilySettingsScreen(),
+      ),
+    ),
+    GoRoute(
+      path: AppRoutes.categories,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<CategoriesCubit>(),
+        child: const CategoriesScreen(),
       ),
     ),
     StatefulShellRoute.indexedStack(

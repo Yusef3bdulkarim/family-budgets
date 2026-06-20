@@ -249,6 +249,24 @@ class FamilyDataSource {
     );
   }
 
+  Future<FamilyMemberModel?> getCurrentMember() async {
+    final uid = _auth.currentUser?.uid;
+    if (uid == null) return null;
+
+    final query = await _firestore
+        .collection(FirestoreCollections.familyMembers)
+        .where('userId', isEqualTo: uid)
+        .where('status', isEqualTo: 'active')
+        .limit(1)
+        .get();
+
+    if (query.docs.isEmpty) return null;
+    return FamilyMemberModel.fromFirestore(
+      query.docs.first.id,
+      query.docs.first.data(),
+    );
+  }
+
   Future<void> updateFamilySettings({
     required String familyId,
     required int budgetStartDay,
