@@ -2,15 +2,23 @@ import '../../../../core/error/api_result.dart';
 import '../../../../core/enums/family_member_role.dart';
 import '../entities/add_member_result.dart';
 import '../entities/family_entity.dart';
+import '../entities/family_member_entity.dart';
 
 abstract class FamilyRepository {
   Future<ApiResult<FamilyEntity>> createFamily(String name);
   Future<ApiResult<FamilyEntity?>> getUserFamily();
+  Future<ApiResult<FamilyMemberEntity?>> getCurrentMember();
   Future<ApiResult<AddMemberResult>> addMember({
     required String familyId,
     required String displayName,
     required String email,
     required FamilyMemberRole role,
     double? monthlyBudget,
+  });
+  Future<ApiResult<void>> updateFamilySettings({
+    required String familyId,
+    required int budgetStartDay,
+    required String currency,
+    double? autoApprovalLimit,
   });
 }

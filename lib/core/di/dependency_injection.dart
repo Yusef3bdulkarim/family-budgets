@@ -22,8 +22,19 @@ import '../../features/family/domain/repos/family_repository.dart';
 import '../../features/family/domain/usecases/add_member_usecase.dart';
 import '../../features/family/domain/usecases/create_family_usecase.dart';
 import '../../features/family/domain/usecases/get_user_family_usecase.dart';
+import '../../features/family/domain/usecases/update_family_settings_usecase.dart';
 import '../../features/family/presentation/bloc/add_members_cubit.dart';
 import '../../features/family/presentation/bloc/family_creation_cubit.dart';
+import '../../features/family/presentation/bloc/family_settings_cubit.dart';
+import '../../features/categories/data/datasources/category_data_source.dart';
+import '../../features/categories/data/repos/category_repository_impl.dart';
+import '../../features/categories/domain/repos/category_repository.dart';
+import '../../features/categories/domain/usecases/create_category_usecase.dart';
+import '../../features/categories/domain/usecases/delete_category_usecase.dart';
+import '../../features/categories/domain/usecases/get_categories_usecase.dart';
+import '../../features/categories/domain/usecases/update_category_usecase.dart';
+import '../../features/categories/presentation/bloc/categories_cubit.dart';
+import '../../features/family/domain/usecases/get_current_member_usecase.dart';
 import '../../features/invitation/data/datasources/invitation_data_source.dart';
 import '../../features/invitation/data/repos/invitation_repository_impl.dart';
 import '../../features/invitation/domain/repos/invitation_repository.dart';
@@ -105,6 +116,9 @@ Future<void> setupDependencies() async {
   getIt.registerLazySingleton(
     () => AddMemberUseCase(getIt<FamilyRepository>()),
   );
+  getIt.registerLazySingleton(
+    () => UpdateFamilySettingsUseCase(getIt<FamilyRepository>()),
+  );
 
   // Invitation — DataSource
   getIt.registerLazySingleton(
@@ -128,6 +142,47 @@ Future<void> setupDependencies() async {
     () => ClaimPendingMembershipUseCase(getIt<InvitationRepository>()),
   );
 
+  // Family — Extra Use Cases
+  getIt.registerLazySingleton(
+    () => GetCurrentMemberUseCase(getIt<FamilyRepository>()),
+  );
+
+  // Categories — DataSource
+  getIt.registerLazySingleton(
+    () => CategoryDataSource(getIt<FirebaseFirestore>(), getIt<FirebaseAuth>()),
+  );
+
+  // Categories — Repository
+  getIt.registerLazySingleton<CategoryRepository>(
+    () => CategoryRepositoryImpl(getIt<CategoryDataSource>()),
+  );
+
+  // Categories — Use Cases
+  getIt.registerLazySingleton(
+    () => GetCategoriesUseCase(getIt<CategoryRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => CreateCategoryUseCase(getIt<CategoryRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => UpdateCategoryUseCase(getIt<CategoryRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => DeleteCategoryUseCase(getIt<CategoryRepository>()),
+  );
+
+  // Categories — Cubit
+  getIt.registerFactory(
+    () => CategoriesCubit(
+      getIt<GetCategoriesUseCase>(),
+      getIt<CreateCategoryUseCase>(),
+      getIt<UpdateCategoryUseCase>(),
+      getIt<DeleteCategoryUseCase>(),
+      getIt<GetCurrentMemberUseCase>(),
+      getIt<GetUserFamilyUseCase>(),
+    ),
+  );
+
   // Family — Cubits
   getIt.registerFactory(
     () => FamilyCreationCubit(
@@ -139,6 +194,13 @@ Future<void> setupDependencies() async {
   );
   getIt.registerFactory(
     () => AddMembersCubit(getIt<AddMemberUseCase>()),
+  );
+  getIt.registerFactory(
+    () => FamilySettingsCubit(
+      getIt<GetUserFamilyUseCase>(),
+      getIt<UpdateFamilySettingsUseCase>(),
+      getIt<GetCurrentUserUseCase>(),
+    ),
   );
 
   // Invitation — Cubit

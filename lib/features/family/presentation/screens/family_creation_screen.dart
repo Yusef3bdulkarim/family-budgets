@@ -31,6 +31,10 @@ class _FamilyCreationScreenState extends State<FamilyCreationScreen> {
             context.go(AppRoutes.home);
           } else if (state is FamilyCreationSuccess) {
             context.go(AppRoutes.addMembers, extra: state.family.id);
+          } else if (state is HasPendingInvitations) {
+            context.go(AppRoutes.pendingInvitations);
+          } else if (state is FamilyAutoJoined) {
+            context.go(AppRoutes.home);
           } else if (state is FamilyCreationError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -44,14 +48,16 @@ class _FamilyCreationScreenState extends State<FamilyCreationScreen> {
           FamilyCreationInitial() ||
           FamilyCreationChecking() ||
           FamilyAlreadyExists() ||
-          FamilyCreationSuccess() =>
-            const Center(child: CircularProgressIndicator()),
+          FamilyCreationSuccess() ||
+          HasPendingInvitations() ||
+          FamilyAutoJoined() => const Center(
+            child: CircularProgressIndicator(),
+          ),
           FamilyCreationReady() ||
           FamilyCreationLoading() ||
-          FamilyCreationError() =>
-            FamilyCreationFormWidget(
-              isLoading: state is FamilyCreationLoading,
-            ),
+          FamilyCreationError() => FamilyCreationFormWidget(
+            isLoading: state is FamilyCreationLoading,
+          ),
         },
       ),
     );

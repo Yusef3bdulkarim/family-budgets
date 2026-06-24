@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../core/constants/family_constants.dart';
 import '../../../../core/constants/firestore_collections.dart';
 import '../../../../core/enums/family_member_role.dart';
 import '../../domain/entities/add_member_result.dart';
@@ -48,6 +49,9 @@ class FamilyDataSource {
       'name': name.trim(),
       'managerId': user.uid,
       'createdAt': FieldValue.serverTimestamp(),
+      'budgetStartDay': FamilyConstants.minBudgetStartDay,
+      'currency': FamilyConstants.defaultCurrency,
+      'autoApprovalLimit': null,
     });
 
     await memberRef.set({
@@ -81,6 +85,9 @@ class FamilyDataSource {
       name: name.trim(),
       managerId: user.uid,
       createdAt: DateTime.now(),
+      budgetStartDay: FamilyConstants.minBudgetStartDay,
+      currency: FamilyConstants.defaultCurrency,
+      autoApprovalLimit: null,
     );
   }
 
@@ -240,6 +247,40 @@ class FamilyDataSource {
       inviteStatus:
           userExists ? InviteStatus.sent : InviteStatus.userNotFound,
     );
+  }
+
+  Future<FamilyMemberModel?> getCurrentMember() async {
+    final uid = _auth.currentUser?.uid;
+    if (uid == null) return null;
+
+    final query = await _firestore
+        .collection(FirestoreCollections.familyMembers)
+        .where('userId', isEqualTo: uid)
+        .where('status', isEqualTo: 'active')
+        .limit(1)
+        .get();
+
+    if (query.docs.isEmpty) return null;
+    return FamilyMemberModel.fromFirestore(
+      query.docs.first.id,
+      query.docs.first.data(),
+    );
+  }
+
+  Future<void> updateFamilySettings({
+    required String familyId,
+    required int budgetStartDay,
+    required String currency,
+    double? autoApprovalLimit,
+  }) async {
+    await _firestore
+        .collection(FirestoreCollections.families)
+        .doc(familyId)
+        .update({
+      'budgetStartDay': budgetStartDay,
+      'currency': currency,
+      'autoApprovalLimit': autoApprovalLimit,
+    });
   }
 }
 

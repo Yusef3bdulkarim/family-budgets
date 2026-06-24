@@ -24,3 +24,7 @@ class CacheFailure extends Failure {
 class FamilyFailure extends Failure {
   const FamilyFailure({required super.message, super.code});
 }
+
+class CategoryFailure extends Failure {
+  const CategoryFailure({required super.message, super.code});
+}
